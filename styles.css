@@ -488,7 +488,7 @@ body {
   cursor: pointer;
   height: 50px;
   width: 140px;
-  background: url("img/logo-rsschool.png") no-repeat center center/cover;
+  background: url("images/logo-rsschool.png") no-repeat center center/cover;
 }
 
 .footer__year {
