@@ -422,7 +422,7 @@ body {
   flex-wrap: wrap;
 }
 
-.main__country {
+.country {
   position: relative;
   margin-right: 10px;
   height: 100%;
@@ -431,7 +431,7 @@ body {
   background-color: #32476b;
 }
 
-.main__map {
+.map {
   position: relative;
   height: 100%;
   -webkit-box-flex: 1;
@@ -439,7 +439,7 @@ body {
   background-color: #32476b;
 }
 
-.main__wrap {
+.wrap {
   height: 100%;
   margin-left: 10px;
   -webkit-box-flex: 1;
@@ -453,7 +453,7 @@ body {
           align-items: center;
 }
 
-.main__table {
+.table {
   position: relative;
   margin-bottom: 10px;
   width: 100%;
@@ -462,7 +462,7 @@ body {
   background-color: #32476b;
 }
 
-.main__chart {
+.chart {
   position: relative;
   width: 100%;
   -webkit-box-flex: 0;
@@ -509,7 +509,7 @@ body {
             justify-content: center;
   }
 
-  .main__country {
+  .country {
     margin-right: 0px;
     margin-bottom: 10px;
     height: calc(33.333% - 10px);
@@ -517,7 +517,7 @@ body {
             flex: 1 1 calc(100%);
   }
 
-  .main__map {
+  .map {
     height: calc(33.333% - 10px);
     margin-bottom: 10px;
     -webkit-box-flex: 1;
@@ -525,7 +525,7 @@ body {
     background-color: #32476b;
   }
 
-  .main__wrap {
+  .wrap {
     height: 33.333%;
     margin-left: 0px;
     -webkit-box-flex: 1;
