@@ -1,69 +1,141 @@
-export class FullscreenIcon {
-    constructor() {
-        this.countryBtn = document.querySelector('[data-btn-country]');
-        this.mapBtn = document.querySelector('[data-btn-map]');
-        this.tableBtn = document.querySelector('[data-btn-table]');
-        this.chartBtn = document.querySelector('[data-btn-chart]');
-        this.countryWindow = document.querySelector('[data-country]');
-        this.mapWindow = document.querySelector('[data-map]');
-        this.wrap = document.querySelector('[data-wrap]');
-        this.tableWindow = document.querySelector('[data-table]');
-        this.chartWindow = document.querySelector('[data-chart]');
+import {wrapBtn} from "../../main.js";
+import {countryBtn} from "../../main.js";
+import {mapBtn} from "../../main.js";
+import {tableBtn} from "../../main.js";
+import {chartBtn} from "../../main.js";
+
+class FullscreenBtn {
+    constructor(btnName, windowName) {
+        this.btn = document.querySelector(btnName);
+        this.window = document.querySelector(windowName);
     }
-    addFullscreenIcon() {
-        this.countryWindow.addEventListener('mouseenter', () => {
-            this.countryBtn.classList.toggle('visible');
-        });
-        this.countryWindow.addEventListener('mouseleave', () => {
-            this.countryBtn.classList.toggle('visible');
-        });
 
-        this.mapWindow.addEventListener('mouseenter', () => {
-            this.mapBtn.classList.toggle('visible');
-        });
-        this.mapWindow.addEventListener('mouseleave', () => {
-            this.mapBtn.classList.toggle('visible');
-        });
+    showBtn() {
+        this.btn.classList.add('visible');
+    }
 
-        this.tableWindow.addEventListener('mouseenter', () => {
-            this.tableBtn.classList.toggle('visible');
-        });
-        this.tableWindow.addEventListener('mouseleave', () => {
-            this.tableBtn.classList.toggle('visible');
-        });
+    hideBtn() {
+        this.btn.classList.remove('visible');
+    }
 
-        this.chartWindow.addEventListener('mouseenter', () => {
-            this.chartBtn.classList.toggle('visible');
+    showWindow() {
+        this.window.classList.remove('hide');
+    }
+
+    hideWindow() {
+        this.window.classList.add('hide');
+    }
+
+    fullscreenWindow() {
+        this.window.classList.add('fullscreen');
+    }
+
+    removeFullscreenWindow() {
+        this.window.classList.remove('fullscreen');
+    }
+
+    showHideBtn() {
+        this.window.addEventListener('mouseenter', () => {
+            this.showBtn();
         });
-        this.chartWindow.addEventListener('mouseleave', () => {
-            this.chartBtn.classList.toggle('visible');
+        this.window.addEventListener('mouseleave', () => {
+            this.hideBtn();
         });
         return this;
     }
-    makeWindowFullscreen() {
-        this.countryBtn.addEventListener('click', () => {
-            this.countryWindow.classList.toggle('fullscreen');
-            this.wrap.classList.toggle('hide');
-            this.mapWindow.classList.toggle('hide');
+}
+
+export class FullscreenBtnCountry extends FullscreenBtn {
+    isFullscreen() {
+        return this.window.classList.contains('fullscreen') ? true : false;
+    }
+    toggleFullscreen() {
+        this.btn.addEventListener('click', () => {
+            if (this.isFullscreen()) {
+                this.removeFullscreenWindow();
+                wrapBtn.showWindow();
+                mapBtn.showWindow();
+            } else {
+                this.fullscreenWindow();
+                wrapBtn.hideWindow();
+                mapBtn.hideWindow();
+            }
         });
-        this.mapBtn.addEventListener('click', () => {
-            this.mapWindow.classList.toggle('fullscreen');
-            this.wrap.classList.toggle('hide');
-            this.countryWindow.classList.toggle('hide');
+        return this;
+    }
+}
+
+export class FullscreenBtnMap extends FullscreenBtn {
+    isFullscreen() {
+        return this.window.classList.contains('fullscreen') ? true : false;
+    }
+    toggleFullscreen() {
+        this.btn.addEventListener('click', () => {
+            if (this.isFullscreen()) {
+                this.removeFullscreenWindow();
+                wrapBtn.showWindow();
+                countryBtn.showWindow();
+            } else {
+                this.fullscreenWindow();
+                wrapBtn.hideWindow();
+                countryBtn.hideWindow();
+            }
         });
-        this.tableBtn.addEventListener('click', () => {
-            this.wrap.classList.toggle('fullscreen');
-            this.tableWindow.classList.toggle('fullscreen');
-            this.mapWindow.classList.toggle('hide');
-            this.countryWindow.classList.toggle('hide');
-            this.chartWindow.classList.toggle('hide');
+        return this;
+    }
+}
+
+export class FullscreenBtnTable extends FullscreenBtn {
+    isFullscreen() {
+        return this.window.classList.contains('fullscreen') ? true : false;
+    }
+    toggleFullscreen() {
+        this.btn.addEventListener('click', () => {
+            if (this.isFullscreen()) {
+                wrapBtn.removeFullscreenWindow();
+                this.removeFullscreenWindow();
+                mapBtn.showWindow();
+                countryBtn.showWindow();
+                chartBtn.showWindow();
+            } else {
+                wrapBtn.fullscreenWindow();
+                this.fullscreenWindow();
+                mapBtn.hideWindow();
+                countryBtn.hideWindow();
+                chartBtn.hideWindow();
+            }
         });
-        this.chartBtn.addEventListener('click', () => {
-            this.wrap.classList.toggle('fullscreen');
-            this.chartWindow.classList.toggle('fullscreen');
-            this.mapWindow.classList.toggle('hide');
-            this.countryWindow.classList.toggle('hide');
-            this.tableWindow.classList.toggle('hide');
+        return this;
+    }
+}
+
+export class FullscreenBtnChart extends FullscreenBtn {
+    isFullscreen() {
+        return this.window.classList.contains('fullscreen') ? true : false;
+    }
+    toggleFullscreen() {
+        this.btn.addEventListener('click', () => {
+            if (this.isFullscreen()) {
+                wrapBtn.removeFullscreenWindow();
+                this.removeFullscreenWindow();
+                mapBtn.showWindow();
+                countryBtn.showWindow();
+                tableBtn.showWindow();
+            } else {
+                wrapBtn.fullscreenWindow();
+                this.fullscreenWindow();
+                mapBtn.hideWindow();
+                countryBtn.hideWindow();
+                tableBtn.hideWindow();
+            }
         });
+        return this;
+    }
+}
+
+export class FullscreenBtnWrap extends FullscreenBtn {
+    constructor(windowName) {
+        super(windowName);
+        this.window = document.querySelector(windowName);
     }
 }
