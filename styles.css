@@ -470,6 +470,18 @@ body {
   background-color: #32476b;
 }
 
+.fullscreen {
+  -webkit-box-flex: 1;
+          flex: 1 1 100%;
+  margin-right: 0;
+  margin-left: 0;
+  margin-bottom: 0;
+}
+
+.hide {
+  display: none;
+}
+
 /**Footer Styles*/
 .footer__body {
   padding: 20px;
@@ -488,7 +500,7 @@ body {
   cursor: pointer;
   height: 50px;
   width: 140px;
-  background: url("images/logo-rsschool.png") no-repeat center center/cover;
+  background: url("assets/images/logo-rsschool.png") no-repeat center center/cover;
 }
 
 .footer__year {
@@ -500,6 +512,30 @@ body {
 }
 .footer__githubs a:hover {
   color: #ffffff;
+}
+
+/**Btns Styles*/
+.btn {
+  cursor: pointer;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 20px;
+  height: 20px;
+  display: none;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  background-color: #32476b;
+  border-radius: 50%;
+  border: 1px solid #111824;
+  color: #b9b9b9;
+}
+
+.visible {
+  display: -webkit-box;
+  display: flex;
 }
 
 @media (max-width: 767px) {
@@ -530,6 +566,10 @@ body {
     margin-left: 0px;
     -webkit-box-flex: 1;
             flex: 1 1 calc(28% - 10px);
+  }
+
+  .visible {
+    display: none;
   }
 }
 @media (max-width: 499px) {
