@@ -502,6 +502,26 @@ body {
   color: #ffffff;
 }
 
+/**Btns Styles*/
+.btn {
+  cursor: pointer;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 20px;
+  height: 20px;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  background-color: #32476b;
+  border-radius: 50%;
+  border: 1px solid #111824;
+  color: #b9b9b9;
+}
+
 @media (max-width: 767px) {
   .main__body {
     height: 200vh;
