@@ -34,6 +34,10 @@ class FullscreenBtn {
         this.window.classList.remove('fullscreen');
     }
 
+    isFullscreen() {
+        return this.window.classList.contains('fullscreen') ? true : false;
+    }
+
     showHideBtn() {
         this.window.addEventListener('mouseenter', () => {
             this.showBtn();
@@ -46,9 +50,6 @@ class FullscreenBtn {
 }
 
 export class FullscreenBtnCountry extends FullscreenBtn {
-    isFullscreen() {
-        return this.window.classList.contains('fullscreen') ? true : false;
-    }
     toggleFullscreen() {
         this.btn.addEventListener('click', () => {
             if (this.isFullscreen()) {
@@ -66,9 +67,6 @@ export class FullscreenBtnCountry extends FullscreenBtn {
 }
 
 export class FullscreenBtnMap extends FullscreenBtn {
-    isFullscreen() {
-        return this.window.classList.contains('fullscreen') ? true : false;
-    }
     toggleFullscreen() {
         this.btn.addEventListener('click', () => {
             if (this.isFullscreen()) {
@@ -86,9 +84,6 @@ export class FullscreenBtnMap extends FullscreenBtn {
 }
 
 export class FullscreenBtnTable extends FullscreenBtn {
-    isFullscreen() {
-        return this.window.classList.contains('fullscreen') ? true : false;
-    }
     toggleFullscreen() {
         this.btn.addEventListener('click', () => {
             if (this.isFullscreen()) {
@@ -110,9 +105,6 @@ export class FullscreenBtnTable extends FullscreenBtn {
 }
 
 export class FullscreenBtnChart extends FullscreenBtn {
-    isFullscreen() {
-        return this.window.classList.contains('fullscreen') ? true : false;
-    }
     toggleFullscreen() {
         this.btn.addEventListener('click', () => {
             if (this.isFullscreen()) {
