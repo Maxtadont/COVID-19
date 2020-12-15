@@ -1,8 +1,5 @@
 export const insertMap = function (data){
-    Highcharts.mapChart('map', {
-        foo(){
-            console.log(this)
-        },
+    Highcharts.mapChart('map', {qqqqqqq
         chart: {
             borderWidth: 1,
             map: 'custom/world',
@@ -11,7 +8,7 @@ export const insertMap = function (data){
     
         title: {
             text: 'COVID-19 distribution map'
-        },
+        },?
     
         subtitle: {
             text: 'Confirmed cases'
