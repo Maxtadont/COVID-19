@@ -1,14 +1,9 @@
 export const insertMap = function (data){
     Highcharts.mapChart('map', {
-        foo(){
-            console.log(this)
-        },
         chart: {
             borderWidth: 1,
             map: 'custom/world',
-          
         },
-    
         title: {
             text: 'COVID-19 distribution map'
         },
@@ -40,9 +35,6 @@ export const insertMap = function (data){
             color: 'red',
             minSize: 4,
             maxSize: '15%',
-            tooltip: {
-                // pointFormat: '{point.properties.hc-a2}: {point.z} thousands'
-            }
         }],
     })
 }
