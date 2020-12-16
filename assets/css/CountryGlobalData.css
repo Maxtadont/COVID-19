@@ -1,0 +1,15 @@
+.country__globaldata {
+  display: flex;
+  background: wheat;
+  align-items: center;
+  justify-content: center;
+  height: 30%;
+}
+
+.country__globaldata__title {
+
+}
+
+.country__globaldata__value {
+
+}
