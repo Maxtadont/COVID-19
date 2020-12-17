@@ -7,30 +7,16 @@ import {InteractiveMap} from "./assets/scripts/maps/maps.js";
 
 /** Code for charts */
 import {Chart} from "./assets/scripts/charts/chart.js";
+import {initChart} from "./assets/scripts/charts/chartInit.js";
 //const countryInit = 'RU'
 const countryInit = 'WD'
-const chart = new Chart();
-function initChart(country) {
-    function load() {
-        return new Promise((resolve) => {
-            chart.getData(country, resolve)
-        })
-    }
-    load()
-    .then(() => {
-        chart.getCases()
-        chart.getDeaths()
-        chart.getRecovered()
-    })
-    .then(() => chart.changeChartType())
-    .then(() => chart.createChart(chart.cases, 'rgba(255, 255, 0, '))
-}
-initChart(countryInit)
+const newChart = new Chart();
+initChart(countryInit, newChart)
 
-const xxxx = document.querySelector('[data-country]')
+/* const xxxx = document.querySelector('[data-country]')
 xxxx.addEventListener('click', () => {
-    initChart('RU')
-})
+    initChart('RU', newChart)
+}) */
 
 export const wrapBtn = new FullscreenBtnWrap('[data-wrap]');
 export const countryBtn = new FullscreenBtnCountry('[data-btn-country]', '[data-country]').showHideBtn().toggleFullscreen();
