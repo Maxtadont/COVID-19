@@ -8,10 +8,9 @@ export class CountryBlock extends DOMObject {
 }
 
 export class CountryBlockTitle extends DOMObject {
-  constructor(name, text, parent) {
-    const domElement = {parent: parent, blockType: "div", classes: ["country__globaldata__title"]};
+  constructor(name, classes, parent) {
+    const domElement = {parent: parent, blockType: "div", classes: classes};
     super(`${name}`, domElement);
-    this.setTitle(text);
   }
 
   setTitle(text) {
