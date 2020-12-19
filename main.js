@@ -5,18 +5,7 @@ import {FullscreenBtnChart} from "./assets/scripts/fullscreen.js";
 import {FullscreenBtnWrap} from "./assets/scripts/fullscreen.js";
 import {InteractiveMap} from "./assets/scripts/maps/maps.js";
 
-/** Code for charts */
-import {Chart} from "./assets/scripts/charts/chart.js";
-import {initChart} from "./assets/scripts/charts/chartInit.js";
-//const countryInit = 'RU'
-const countryInit = 'WD'
-const newChart = new Chart();
-initChart(countryInit, newChart)
 
-/* const xxxx = document.querySelector('[data-country]')
-xxxx.addEventListener('click', () => {
-    initChart('RU', newChart)
-}) */
 
 export const wrapBtn = new FullscreenBtnWrap('[data-wrap]');
 export const countryBtn = new FullscreenBtnCountry('[data-btn-country]', '[data-country]').showHideBtn().toggleFullscreen();
