@@ -1,4 +1,3 @@
-
 import { countryList } from "./chartCountries.js";
 export class Chart {
 	constructor() {
