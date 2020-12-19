@@ -5,7 +5,6 @@ import {FullscreenBtnChart} from "./assets/scripts/fullscreen.js";
 import {FullscreenBtnWrap} from "./assets/scripts/fullscreen.js";
 import {InteractiveMap} from "./assets/scripts/maps/maps.js";
 
-/** Code for charts */
 import { Chart } from "./assets/scripts/charts/chart.js";
 const newChart = new Chart(); /** Создание пустого объекта чарта, один раз при загрузке страницы */
 newChart.getChart("AL", 1/**, "yellow" */); /** Отрисовка чарта. Все параметры необязательные */
