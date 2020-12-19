@@ -1,5 +1,5 @@
-export const insertMap = function (data){
-    Highcharts.mapChart('map', {
+export const insertMap = function (data,mapObj){
+    Highcharts.mapChart(`map_${mapObj.name}`, {
         chart: {
             borderWidth: 1,
             map: 'custom/world',
@@ -9,7 +9,7 @@ export const insertMap = function (data){
         },
     
         subtitle: {
-            text: 'Confirmed cases'
+            text: mapObj.text
         },
     
         legend: {
@@ -29,10 +29,10 @@ export const insertMap = function (data){
             enableMouseTracking: true
         }, {
             type: 'mapbubble',
-            name: 'Confirmed cases',
+            name: mapObj.text,
             joinBy: ['iso-a3', 'code3'],
             data: data,
-            color: 'red',
+            color: mapObj.color,
             minSize: 4,
             maxSize: '15%',
         }],
