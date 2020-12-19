@@ -11,6 +11,7 @@ import {MapArea} from "./assets/scripts/maps/maps.js";
 
 
 
+
 export const wrapBtn = new FullscreenBtnWrap('[data-wrap]');
 export const countryBtn = new FullscreenBtnCountry('[data-btn-country]', '[data-country]').showHideBtn().toggleFullscreen();
 export const mapBtn = new FullscreenBtnMap('[data-btn-map]', '[data-map]').showHideBtn().toggleFullscreen();
@@ -24,3 +25,7 @@ export const mapConfirmedDeaths = new InteractiveMap(mapsData.deaths).createMapW
 export const tabConfirmedDeaths = new MapTab(mapsData.deaths).createTab()
 export const mapConfirmedRecovered = new InteractiveMap(mapsData.recovered).createMapWrap().renderMap()
 export const tabConfirmedRecovered = new MapTab(mapsData.recovered).createTab()
+
+
+
+
