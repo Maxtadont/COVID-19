@@ -1,10 +1,10 @@
-import { mapArea } from "../../../main.js";
+import {mapArea} from "../../../main.js";
 import {codes} from "./countryCodes.js";
 import {insertMap} from "./highChartMap.js";
 
 export const mapsData = {
-    cases: {'name':'confirmed_cases', 'text':'Confirmed cases','json':'TotalConfirmed','color':'red', 'state':'active'},
-    deaths: {'name':'confirmed_deaths', 'text':'Confirmed deaths','json':'TotalDeaths','color':'black','state':'none'},
+    cases: {'name':'confirmed_cases', 'text':'Confirmed cases','json':'TotalConfirmed','color':'orange                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ', 'state':'active'},
+    deaths: {'name':'confirmed_deaths', 'text':'Confirmed deaths','json':'TotalDeaths','color':'red','state':'none'},
     recovered:{'name':'confirmed_recovered', 'text':'Confirmed recovered','json':'TotalRecovered','color':'green','state':'none'}
 }
 export class MapArea {
@@ -17,10 +17,23 @@ export class MapArea {
         this.mapArea.appendChild(mapContainer)
         return this
     }
-    changeMap(){
-        console.log('Change map!')
+    changeMap(currentMap){
+        this.deactivateAnotherMap()
+        this.activateCurrentMap(currentMap)
     }
-
+    activateCurrentMap(currentMap) {
+        currentMap.classList.add('active_map')
+    }
+    deactivateAnotherMap(){
+        const activeMap = document.querySelector('.active_map')
+        activeMap.classList.remove('active_map')
+    }
+    chooseCountry(code) {
+        document.querySelectorAll('.chosen_country').forEach(item => item.classList.remove('chosen_country'))
+        const countries = document.querySelectorAll(`[${code}]`)
+        countries.forEach(item => item.classList.add('chosen_country'))
+    }
+    
 }
 export class InteractiveMap {
     constructor(mapObj){
@@ -32,11 +45,14 @@ export class InteractiveMap {
         this.color = this.mapObj.color;
         this.data = null;
         this.buffer = null;
+        this.state = this.mapObj.state;
         
     }
     createMapWrap() {
-        this.mapWrap.setAttribute('id',`map_${this.name}`)
+        this.mapWrap.setAttribute(`data-map-${this.name}`,'')
         this.mapContainer.appendChild(this.mapWrap) 
+        const mapWrap = document.querySelector(`[data-map-${this.name}]`)
+        this.activateDefaultMap(mapWrap)
         return this
     }
     renderMap(){
@@ -50,6 +66,7 @@ export class InteractiveMap {
           .then(() => this.handleData())
           .then(() => {
               insertMap(this.data,this.mapObj)
+              this.setCodes()
               this.buffer = null;
             })
           .catch(error => console.log('error', error));
@@ -69,6 +86,20 @@ export class InteractiveMap {
             }
             this.data = handledData.filter(item => item.code3 !== '')
     }
+    activateDefaultMap (map) {
+        this.state === 'active' ? map.classList.add('active_map') : null;
+    }
+    
+    setCodes() {
+        const bubbles = document.querySelectorAll('.highcharts-series-group')
+        for(let i = 0; i < bubbles.length; i++) {
+            for(let j = 0; j < bubbles[i].childNodes[2].childElementCount; j++) {
+                if(j !== 0) {bubbles[i].childNodes[2].children[j].setAttribute(`${bubbles[i].childNodes[2].children[j].point.code}`, '')
+                }
+            }
+        }
+
+    }
 
 }
 export class MapTab {
@@ -83,8 +114,7 @@ export class MapTab {
         const tab = document.createElement('a')
         tab.setAttribute('data-tab',this.name)
         tab.textContent = this.text;
-        this.activateDefaultTab (tab)
-        // tab.href = "#";
+        this.activateDefaultTab(tab)
         this.mapContainer.appendChild(tab)
         this.setEventListenerForMapChange(this.name)
         return this
@@ -108,8 +138,11 @@ export class MapTab {
     chooseAnotherTab(currentTab) {
         this.deactivateAnotherTab()
         this.activateCurrentTab (currentTab)
-        console.log(mapArea.changeMap())
+        const currentMap = document.querySelector(`[data-map-${currentTab.dataset.tab}]`)
+        mapArea.changeMap(currentMap)
     }
 
 
 }
+
+ 

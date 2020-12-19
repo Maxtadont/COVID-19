@@ -1,5 +1,6 @@
 export const insertMap = function (data,mapObj){
-    Highcharts.mapChart(`map_${mapObj.name}`, {
+    const elementDOM = document.querySelector(`[data-map-${mapObj.name}]`)
+    Highcharts.mapChart(elementDOM, {
         chart: {
             borderWidth: 1,
             map: 'custom/world',
