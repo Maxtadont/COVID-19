@@ -1,12 +1,11 @@
-import {mapArea} from "../../../main.js";
-import {newChart} from "../../../main.js";
+import { mapArea } from "../../../main.js";
 import {codes} from "./countryCodes.js";
 import {insertMap} from "./highChartMap.js";
 
 export const mapsData = {
-    cases: {'name':'confirmed_cases', 'text':'Confirmed cases','json':'TotalConfirmed','color':'#FFFF00', 'state':'active'},
-    deaths: {'name':'confirmed_deaths', 'text':'Confirmed deaths','json':'TotalDeaths','color':'#FF0000','state':'none'},
-    recovered:{'name':'confirmed_recovered', 'text':'Confirmed recovered','json':'TotalRecovered','color':'#008000','state':'none'}
+    cases: {'name':'confirmed_cases', 'text':'Confirmed cases','json':'TotalConfirmed','color':'red', 'state':'active'},
+    deaths: {'name':'confirmed_deaths', 'text':'Confirmed deaths','json':'TotalDeaths','color':'black','state':'none'},
+    recovered:{'name':'confirmed_recovered', 'text':'Confirmed recovered','json':'TotalRecovered','color':'green','state':'none'}
 }
 export class MapArea {
     constructor()  {
@@ -18,44 +17,26 @@ export class MapArea {
         this.mapArea.appendChild(mapContainer)
         return this
     }
-    changeMap(currentMap){
-        this.deactivateAnotherMap()
-        this.activateCurrentMap(currentMap)
+    changeMap(){
+        console.log('Change map!')
     }
-    activateCurrentMap(currentMap) {
 
-        currentMap.classList.add('active_map')
-    }
-    deactivateAnotherMap(){
-        const activeMap = document.querySelector('.active_map')
-        activeMap.classList.remove('active_map')
-    }
-    chooseCountry(code) {
-        document.querySelectorAll('.chosen_country').forEach(item => item.classList.remove('chosen_country'))
-        const countries = document.querySelectorAll(`[data-country = ${code}]`)
-        countries.forEach(item => item.classList.add('chosen_country'))
-        newChart.getChart(code)
-    }
-    
 }
 export class InteractiveMap {
     constructor(mapObj){
         this.mapObj = mapObj
-        this.mapContainer = document.querySelector('[data-map-container]')
+        this.mapContainer = document.querySelector('[data-map]')
         this.mapWrap = document.createElement('div')
         this.name = this.mapObj.name;
         this.json = this.mapObj.json;
         this.color = this.mapObj.color;
         this.data = null;
         this.buffer = null;
-        this.state = this.mapObj.state;
         
     }
     createMapWrap() {
-        this.mapWrap.setAttribute(`data-map-${this.name}`,'')
+        this.mapWrap.setAttribute('id',`map_${this.name}`)
         this.mapContainer.appendChild(this.mapWrap) 
-        const mapWrap = document.querySelector(`[data-map-${this.name}]`)
-        this.activateDefaultMap(mapWrap)
         return this
     }
     renderMap(){
@@ -69,8 +50,6 @@ export class InteractiveMap {
           .then(() => this.handleData())
           .then(() => {
               insertMap(this.data,this.mapObj)
-              this.setCodes()
-              this.setEventListenerForChoosingBubble()
               this.buffer = null;
             })
           .catch(error => console.log('error', error));
@@ -90,23 +69,6 @@ export class InteractiveMap {
             }
             this.data = handledData.filter(item => item.code3 !== '')
     }
-    activateDefaultMap (map) {
-        this.state === 'active' ? map.classList.add('active_map') : null;
-    }
-    
-    setCodes() {
-        const bubbles = document.querySelectorAll("g.highcharts-series.highcharts-series-1.highcharts-mapbubble-series.highcharts-tracker");
-        bubbles[bubbles.length - 1].childNodes.forEach(item => { 
-            item.setAttribute('data-country',`${item.point.code}`)
-        })
-        
-    }
-    setEventListenerForChoosingBubble() {
-        const bubbles = document.querySelectorAll("g.highcharts-series.highcharts-series-1.highcharts-mapbubble-series.highcharts-tracker");
-        bubbles[bubbles.length - 1].addEventListener('click', (e) => {
-            mapArea.chooseCountry(e.target.dataset.country)
-        })
-    }
 
 }
 export class MapTab {
@@ -121,7 +83,8 @@ export class MapTab {
         const tab = document.createElement('a')
         tab.setAttribute('data-tab',this.name)
         tab.textContent = this.text;
-        this.activateDefaultTab(tab)
+        this.activateDefaultTab (tab)
+        // tab.href = "#";
         this.mapContainer.appendChild(tab)
         this.setEventListenerForMapChange(this.name)
         return this
@@ -145,11 +108,8 @@ export class MapTab {
     chooseAnotherTab(currentTab) {
         this.deactivateAnotherTab()
         this.activateCurrentTab (currentTab)
-        const currentMap = document.querySelector(`[data-map-${currentTab.dataset.tab}]`)
-        mapArea.changeMap(currentMap)
+        console.log(mapArea.changeMap())
     }
 
 
 }
-
- 
