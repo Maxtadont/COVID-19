@@ -1,6 +1,50 @@
-#map {
+#map_confirmed_cases,
+#map_confirmed_deaths,
+#map_confirmed_recovered {
     width: 90%;
     height: 90%;
     margin: 30px auto 30px;
     padding: 10 auto;
 }
+#map_confirmed_deaths,
+#map_confirmed_recovered {
+    display:none;
+}
+
+a[data-tab = 'confirmed_cases'],
+a[data-tab = 'confirmed_deaths'],
+a[data-tab = 'confirmed_recovered']{
+    position: absolute;
+    z-index: 1000;
+    width: 150px;
+    height: 20px;
+    background:white;
+    cursor: pointer;
+}
+a[data-tab = 'confirmed_cases'] {
+    bottom: 9px;
+    left: 80px;
+}
+
+a[data-tab = 'confirmed_deaths'] {
+    bottom: 9px;
+    left: 231px;
+}
+
+a[data-tab = 'confirmed_recovered'] {
+    bottom: 9px;
+    left: 382px;
+}
+
+.active {
+    border-bottom:3px solid blue;
+    background: black;
+}
+
+
+ 
+
+
+
+
+
