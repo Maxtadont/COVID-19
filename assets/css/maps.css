@@ -1,14 +1,14 @@
-#map_confirmed_cases,
-#map_confirmed_deaths,
-#map_confirmed_recovered {
+[data-map-confirmed_cases],
+[data-map-confirmed_deaths],
+[data-map-confirmed_recovered] {
     width: 90%;
     height: 90%;
     margin: 30px auto 30px;
     padding: 10 auto;
+    display: none;
 }
-#map_confirmed_deaths,
-#map_confirmed_recovered {
-    display:none;
+.active_map {
+    display: block;
 }
 
 a[data-tab = 'confirmed_cases'],
@@ -40,8 +40,32 @@ a[data-tab = 'confirmed_recovered'] {
     border-bottom:3px solid blue;
     background: black;
 }
+.chosen_country {
+    fill:violet;
+    animation: bubble_bubble 1s linear infinite;
+}
 
+@keyframes bubble_bubble {
+    from {
+      stroke-width:2;
+    }
+  
+    to {
+        stroke-width:2;
+    }
+  
+    25% {
+        stroke-width:4;
+    }
+    50% {
+        stroke-width:5px;
+    }
+    75% {
+        stroke-width:4;
+    }
 
+  }
+  
  
 
 
