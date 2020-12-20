@@ -1,0 +1,22 @@
+{
+  "name": "covid-19",
+  "version": "1.0.0",
+  "description": "https://github.com/rolling-scopes-school/tasks/blob/master/tasks/covid-dashboard.md",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Maxtadont/COVID-19.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Maxtadont/COVID-19/issues"
+  },
+  "homepage": "https://github.com/Maxtadont/COVID-19#readme",
+  "devDependencies": {
+    "eslint": "^7.16.0"
+  }
+}
