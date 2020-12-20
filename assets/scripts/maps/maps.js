@@ -1,4 +1,5 @@
 import {mapArea} from "../../../main.js";
+import {newChart} from "../../../main.js";
 import {codes} from "./countryCodes.js";
 import {insertMap} from "./highChartMap.js";
 
@@ -33,6 +34,7 @@ export class MapArea {
         document.querySelectorAll('.chosen_country').forEach(item => item.classList.remove('chosen_country'))
         const countries = document.querySelectorAll(`[data-country = ${code}]`)
         countries.forEach(item => item.classList.add('chosen_country'))
+        newChart.getChart(code)
     }
     
 }
@@ -93,13 +95,14 @@ export class InteractiveMap {
     }
     
     setCodes() {
-        const bubbles = document.querySelectorAll('.highcharts-series-group')
-        bubbles[bubbles.length - 1].children[2].childNodes.forEach(item => { 
+        const bubbles = document.querySelectorAll("g.highcharts-series.highcharts-series-1.highcharts-mapbubble-series.highcharts-tracker");
+        bubbles[bubbles.length - 1].childNodes.forEach(item => { 
             item.setAttribute('data-country',`${item.point.code}`)
         })
+        
     }
     setEventListenerForChoosingBubble() {
-        const bubbles = document.querySelectorAll('.highcharts-series-group')
+        const bubbles = document.querySelectorAll("g.highcharts-series.highcharts-series-1.highcharts-mapbubble-series.highcharts-tracker");
         bubbles[bubbles.length - 1].addEventListener('click', (e) => {
             mapArea.chooseCountry(e.target.dataset.country)
         })
