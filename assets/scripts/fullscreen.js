@@ -1,4 +1,4 @@
-import {wrapBtn} from "../../main.js";
+import { wrapBtn } from "../../main.js";
 import {countryBtn} from "../../main.js";
 import {mapBtn} from "../../main.js";
 import {tableBtn} from "../../main.js";

@@ -1,6 +1,71 @@
-#map {
+[data-map-container]{
+    position: relative;
+}
+.highcharts-background {
+    opacity:0;
+}
+[data-map-confirmed_cases],
+[data-map-confirmed_deaths],
+[data-map-confirmed_recovered] {
     width: 90%;
     height: 90%;
-    margin: 30px auto 30px;
+    margin: 50px auto 30px;
     padding: 10 auto;
+    display: none;
 }
+.active_map {
+    display: block;
+}
+a[data-tab = 'confirmed_cases'],
+a[data-tab = 'confirmed_deaths'],
+a[data-tab = 'confirmed_recovered']{
+    position: absolute;
+    z-index: 1000;
+    width: 150px;
+    height: 20px;
+    cursor: pointer;
+    text-align: center;
+}
+a[data-tab = 'confirmed_cases'] {
+    bottom: -20px;
+    left: 80px;
+}
+a[data-tab = 'confirmed_deaths'] {
+    bottom: -20px;
+    left: 231px;
+}
+a[data-tab = 'confirmed_recovered'] {
+    bottom: -20px;
+    left: 382px;
+}
+.active {
+    border-bottom:3px solid rgb(108, 108, 171);
+}
+.chosen_country {
+    fill:violet;
+    animation: bubble_bubble 1s linear infinite;
+}
+@keyframes bubble_bubble {
+    from {
+      stroke-width:2;
+    }
+    to {
+        stroke-width:2;
+    }
+    25% {
+        stroke-width:4;
+    }
+    50% {
+        stroke-width:5px;
+    }
+    75% {
+        stroke-width:4;
+    }
+  }
+
+ 
+
+
+
+
+
