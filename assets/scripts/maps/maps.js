@@ -3,9 +3,9 @@ import {codes} from "./countryCodes.js";
 import {insertMap} from "./highChartMap.js";
 
 export const mapsData = {
-    cases: {'name':'confirmed_cases', 'text':'Confirmed cases','json':'TotalConfirmed','color':'orange                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      ', 'state':'active'},
-    deaths: {'name':'confirmed_deaths', 'text':'Confirmed deaths','json':'TotalDeaths','color':'red','state':'none'},
-    recovered:{'name':'confirmed_recovered', 'text':'Confirmed recovered','json':'TotalRecovered','color':'green','state':'none'}
+    cases: {'name':'confirmed_cases', 'text':'Confirmed cases','json':'TotalConfirmed','color':'#FFFF00', 'state':'active'},
+    deaths: {'name':'confirmed_deaths', 'text':'Confirmed deaths','json':'TotalDeaths','color':'#FF0000','state':'none'},
+    recovered:{'name':'confirmed_recovered', 'text':'Confirmed recovered','json':'TotalRecovered','color':'#008000','state':'none'}
 }
 export class MapArea {
     constructor()  {
@@ -22,6 +22,7 @@ export class MapArea {
         this.activateCurrentMap(currentMap)
     }
     activateCurrentMap(currentMap) {
+
         currentMap.classList.add('active_map')
     }
     deactivateAnotherMap(){
@@ -30,7 +31,7 @@ export class MapArea {
     }
     chooseCountry(code) {
         document.querySelectorAll('.chosen_country').forEach(item => item.classList.remove('chosen_country'))
-        const countries = document.querySelectorAll(`[${code}]`)
+        const countries = document.querySelectorAll(`[data-country = ${code}]`)
         countries.forEach(item => item.classList.add('chosen_country'))
     }
     
@@ -38,7 +39,7 @@ export class MapArea {
 export class InteractiveMap {
     constructor(mapObj){
         this.mapObj = mapObj
-        this.mapContainer = document.querySelector('[data-map]')
+        this.mapContainer = document.querySelector('[data-map-container]')
         this.mapWrap = document.createElement('div')
         this.name = this.mapObj.name;
         this.json = this.mapObj.json;
@@ -67,6 +68,7 @@ export class InteractiveMap {
           .then(() => {
               insertMap(this.data,this.mapObj)
               this.setCodes()
+              this.setEventListenerForChoosingBubble()
               this.buffer = null;
             })
           .catch(error => console.log('error', error));
@@ -92,13 +94,15 @@ export class InteractiveMap {
     
     setCodes() {
         const bubbles = document.querySelectorAll('.highcharts-series-group')
-        for(let i = 0; i < bubbles.length; i++) {
-            for(let j = 0; j < bubbles[i].childNodes[2].childElementCount; j++) {
-                if(j !== 0) {bubbles[i].childNodes[2].children[j].setAttribute(`${bubbles[i].childNodes[2].children[j].point.code}`, '')
-                }
-            }
-        }
-
+        bubbles[bubbles.length - 1].children[2].childNodes.forEach(item => { 
+            item.setAttribute('data-country',`${item.point.code}`)
+        })
+    }
+    setEventListenerForChoosingBubble() {
+        const bubbles = document.querySelectorAll('.highcharts-series-group')
+        bubbles[bubbles.length - 1].addEventListener('click', (e) => {
+            mapArea.chooseCountry(e.target.dataset.country)
+        })
     }
 
 }
