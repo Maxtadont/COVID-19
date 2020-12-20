@@ -1,54 +1,28 @@
-import {countries} from "./Countries.js";
+import * as MainElements from "../../../main.js"
 
-export class Observer {
-  constructor() {
-    this.subscribers = [];
-  }
-
-  subscribe(fn) {
-    this.subscribers.push(fn);
-  }
-
-  unsubscribe(fn) {
-    this.subscribers = this.subscribers.filter((subscriber) => subscriber !== fn);
-  }
-
-  broadcast(data) {
-    this.observers.forEach((subscriber) => subscriber(data));
-  }
-}
-
-export class APIdata {
+export class APIData {
   constructor() {
     this.requestOptions = {
       method: 'GET',
       redirect: 'follow'
     };
     this.urlSummary = "https://api.covid19api.com/summary";
-    
-    this.dataAll = null;
     this.dataTotal = null;
-    this.dataCountries = null;
+    this.countries = null;
   }
 
   getAPIData(data) {
-    this.dataAll = data;
     this.dataTotal = data.Global;
-    this.dataCountries = data.Countries;
-    document.write(`<div>${JSON.stringify(this.dataCountries)}</div>`);
-    //console.log(this.dataTotal.TotalConfirmed);
-    //console.log(this.dataCountries[0]);
+    this.countries = data.Countries;    
+    const dataType = MainElements.globalDataType.getDataType("CASES");
+    MainElements.totalBlock.setDataType(dataType, this.dataTotal[`${dataType.type}`]);
+    MainElements.totalTable.addCountries(this.countries, dataType);  
   }
 
-  showAPIData(data) {
-    return data;
-  }
-
-  async request() {
-    await fetch(this.urlSummary, this.requestOptions)
+  requestTotal() {
+    fetch(this.urlSummary, this.requestOptions)
       .then(response => response.json())
       .then((data) => {        
-        localStorage.setItem("datajson", JSON.stringify(data));
         this.getAPIData(data);        
       })
       .catch((error) => {
