@@ -1,9 +1,16 @@
+[data-map-container]{
+    position: relative;
+}
+.highcharts-background {
+    opacity:0;
+}
+
 [data-map-confirmed_cases],
 [data-map-confirmed_deaths],
 [data-map-confirmed_recovered] {
     width: 90%;
     height: 90%;
-    margin: 30px auto 30px;
+    margin: 50px auto 30px;
     padding: 10 auto;
     display: none;
 }
@@ -18,27 +25,27 @@ a[data-tab = 'confirmed_recovered']{
     z-index: 1000;
     width: 150px;
     height: 20px;
-    background:white;
     cursor: pointer;
+    text-align: center;
 }
 a[data-tab = 'confirmed_cases'] {
-    bottom: 9px;
+    bottom: -20px;
     left: 80px;
 }
 
 a[data-tab = 'confirmed_deaths'] {
-    bottom: 9px;
+    bottom: -20px;
     left: 231px;
 }
 
 a[data-tab = 'confirmed_recovered'] {
-    bottom: 9px;
+    bottom: -20px;
     left: 382px;
 }
 
 .active {
-    border-bottom:3px solid blue;
-    background: black;
+    border-bottom:3px solid rgb(108, 108, 171);
+    
 }
 .chosen_country {
     fill:violet;
@@ -65,7 +72,7 @@ a[data-tab = 'confirmed_recovered'] {
     }
 
   }
-  
+
  
 
 
