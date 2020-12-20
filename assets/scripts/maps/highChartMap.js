@@ -1,5 +1,5 @@
-export const insertMap = function (data,mapObj){
-    const elementDOM = document.querySelector(`[data-map-${mapObj.name}]`)
+export const insertMap = function (data,mapObj) {
+    const elementDOM = document.querySelector(`[data-map-${ mapObj.name }]`)
     Highcharts.mapChart(elementDOM, {
         chart: {
             borderWidth: 1,
@@ -11,14 +11,17 @@ export const insertMap = function (data,mapObj){
         },
         title: {
             text: 'COVID-19 distribution map',
-            style: { "color": "#b9b9b9", "fontSize": "18px" }
+            style: { 
+                "color": "#b9b9b9",
+                "fontSize": "18px" 
+            }
         },
-    
         subtitle: {
             text: mapObj.text,
-            style: { "color": "#b9b9b9", "fontSize": "12px" }
+            style: { 
+                "color": "#b9b9b9",
+                "fontSize": "12px" }
         },
-    
         legend: {
             enabled: false
         },
@@ -27,14 +30,12 @@ export const insertMap = function (data,mapObj){
                 opacity:'0'
             },
         },
-    
         mapNavigation: {
             enabled: true,
             buttonOptions: {
                 verticalAlign: 'bottom'
             }
         },
-    
         series: [{
             name: 'Countries',
             enableMouseTracking: true,
