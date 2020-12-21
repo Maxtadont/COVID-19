@@ -14,6 +14,7 @@ export class Chart {
 		this.chartDescription = document.createElement("p");
 		this.chartDescription.classList.add("highcharts-description");
 		this.chartFigure.appendChild(this.chartDescription);
+
 	}
 
 	getChart(country = "WD", type = 0, customColor) {
