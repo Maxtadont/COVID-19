@@ -77,7 +77,7 @@ export class InteractiveMap {
             method: 'GET',
             redirect: 'follow'
           };
-        fetch("https://api.covid19api.com/summary", requestOptions)
+        fetch("../../../data.json", requestOptions)
           .then(response => response.json())
           .then(json => this.buffer = json.Countries)
           .then(() => this.handleData())
