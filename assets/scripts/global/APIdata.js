@@ -1,22 +1,24 @@
-import * as MainElements from "../../../main.js"
+import * as MainElements from "../../../main.js";
 
 export class APIData {
-  constructor() {
+  constructor(dataStore, dataType) {
     this.requestOptions = {
-      method: 'GET',
-      redirect: 'follow'
+      method: "GET",
+      redirect: "follow"
     };
     this.urlSummary = "https://api.covid19api.com/summary";
-    this.dataTotal = null;
-    this.countries = null;
+    this.dataStore = dataStore;
+    this.dataType = dataType;
   }
 
   getAPIData(data) {
-    this.dataTotal = data.Global;
-    this.countries = data.Countries;    
-    const dataType = MainElements.globalDataType.getDataType("CASES");
-    MainElements.totalBlock.setDataType(dataType, this.dataTotal[`${dataType.type}`]);
-    MainElements.totalTable.addCountries(this.countries, dataType);  
+    this.dataStore.setTotal(data.Global);
+    this.dataStore.setCountries(data.Countries);
+    const dataTotal = this.dataStore.getTotal();
+    const dataCountries = this.dataStore.getCountries();
+    const dataType = this.dataType.getDataType("CASES");
+    MainElements.totalBlock.setDataType(dataType, dataTotal[`${dataType.type}`]);
+    MainElements.totalTable.addCountries(dataCountries, dataType);  
   }
 
   requestTotal() {
