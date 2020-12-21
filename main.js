@@ -7,8 +7,8 @@ import {InteractiveMap} from "./assets/scripts/maps/maps.js";
 import {MapTab} from "./assets/scripts/maps/maps.js";
 import {mapsData} from "./assets/scripts/maps/maps.js";
 import {MapArea} from "./assets/scripts/maps/maps.js";
-import {DataType} from "./assets/scripts/global/DataTypes.js"
-import * as CountryTotal from "./assets/scripts/CountryTotal.js"
+import {DataType} from "./assets/scripts/global/DataTypes.js";
+import * as CountryTotal from "./assets/scripts/CountryTotal.js";
 import * as dataAPI from "./assets/scripts/global/APIdata.js";
 
 import { Chart } from "./assets/scripts/charts/chart.js";
@@ -21,13 +21,13 @@ export const mapBtn = new FullscreenBtnMap("[data-btn-map]", "[data-map]").showH
 export const tableBtn = new FullscreenBtnTable("[data-btn-table]", "[data-table]").showHideBtn().toggleFullscreen();
 export const chartBtn = new FullscreenBtnChart("[data-btn-chart]", "[data-chart]").showHideBtn().toggleFullscreen();
 
-export const mapArea = new MapArea().createMapContainer()
-export const mapConfirmedCases = new InteractiveMap(mapsData.cases).createMapWrap().renderMap()
-export const tabConfirmedCases = new MapTab(mapsData.cases).createTab()
-export const mapConfirmedDeaths = new InteractiveMap(mapsData.deaths).createMapWrap().renderMap()
-export const tabConfirmedDeaths = new MapTab(mapsData.deaths).createTab()
-export const mapConfirmedRecovered = new InteractiveMap(mapsData.recovered).createMapWrap().renderMap()
-export const tabConfirmedRecovered = new MapTab(mapsData.recovered).createTab()
+export const mapArea = new MapArea().createMapContainer();
+export const mapConfirmedCases = new InteractiveMap(mapsData.cases).createMapWrap().renderMap();
+export const tabConfirmedCases = new MapTab(mapsData.cases).createTab();
+export const mapConfirmedDeaths = new InteractiveMap(mapsData.deaths).createMapWrap().renderMap();
+export const tabConfirmedDeaths = new MapTab(mapsData.deaths).createTab();
+export const mapConfirmedRecovered = new InteractiveMap(mapsData.recovered).createMapWrap().renderMap();
+export const tabConfirmedRecovered = new MapTab(mapsData.recovered).createTab();
 
 export const globalDataType = new DataType();
 export const totalAPI = new dataAPI.APIData();

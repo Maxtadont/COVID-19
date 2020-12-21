@@ -79,7 +79,10 @@ export class Chart {
 		this.chartDescription.style.color = lineColor;
 		Highcharts.chart("container", {
 			credits: { enabled: false },
-			chart: { backgroundColor: "#32476b", type: "area" },
+			chart: { 
+				backgroundColor: "#32476b", 
+				type: "area"
+			},
 			title: {
 				style: { "color": lineColor, "fontSize": "14px", fontFamily: "Montserrat" },
 				text: country
