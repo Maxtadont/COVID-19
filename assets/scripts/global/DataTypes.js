@@ -2,6 +2,35 @@ export const CASES_COLOR = "#FFFF00";
 export const DEATHS_COLOR = "#FF0000";
 export const RECOVERS_COLOR = "#008000";
 
+export class TotalData {
+  #dataTotal = null;
+  #dataAllCountries = null;
+  constructor() {
+  }
+
+  setTotal(data) {
+    this.#dataTotal = data;
+  }
+
+  setCountries(data) {
+    this.#dataAllCountries = data;
+  }
+
+  getTotal() {
+    return this.#dataTotal;
+  }
+
+  getCountries() {
+    return this.#dataAllCountries;
+  }
+
+  filterCountries(text) {
+    const countryRegExp = new RegExp(text.toUpperCase(), "g");
+    const result = this.getCountries().filter(element => countryRegExp.exec(element.Country.toUpperCase()));
+    return result;
+  }
+}
+
 export class DataType {
   #dataType = [
     {
@@ -10,7 +39,7 @@ export class DataType {
       "type": "TotalConfirmed", 
       "globalTitle": "Global cases", 
       "countryTitle": "Cases",
-      "code": 1
+      "code": 0
     },
     {
       "name": "DEATHS", 
@@ -18,7 +47,7 @@ export class DataType {
       "type": "TotalDeaths", 
       "globalTitle": "Global deaths", 
       "countryTitle": "Deaths",
-      "code": 2
+      "code": 1
     },
     {
       "name": "RECOVERED", 
@@ -26,7 +55,7 @@ export class DataType {
       "type": "TotalRecovered", 
       "globalTitle": "Global recovered", 
       "countryTitle": "Recovered",
-      "code": 3
+      "code": 2
     }
   ];
   constructor() {

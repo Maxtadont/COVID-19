@@ -43,6 +43,11 @@
   max-width: 300px;
 }
 
+.countrySearch__btn {
+  outline-style: none;
+  padding: 10px;
+}
+
 .countryTableContainer {
   display: flex;
   align-items: flex-start;
@@ -65,18 +70,13 @@
 
 .countryTable__row {
   align-items: center;
-  overflow-wrap: normal;
   border-bottom: 1px solid rgb(31, 31, 31);
   transition: 0.2s;
   text-shadow: 2px 2px 20px black;
 }
 
-.countryTable__row:hover {
-  color: rgb(39, 194, 233);
-}
-
-.countryTable__cellName, .countryTable__cellFlag {
-  font-size: 1rem;
+.countryTable__cellName, .countryTable__cellFlag, .countryTable__cellValue {
+  font-size: 1.1rem;
   color: rgb(223, 219, 219);
 }
 
@@ -85,16 +85,15 @@
 }
 
 .countryTable__cellFlag {
-  width: 10%;
+  width: 20%;
 }
 
 .countryTable__cellFlag__img {
-  width: 3rem;
+  width: 2rem;
 }
 
 .countryTable__cellValue {
-  width: 20%; 
-  font-size: 1.2rem;
+  width: 20%;
 }
 
 

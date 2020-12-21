@@ -8,12 +8,13 @@ import {MapTab} from "./assets/scripts/maps/maps.js";
 import {mapsData} from "./assets/scripts/maps/maps.js";
 import {MapArea} from "./assets/scripts/maps/maps.js";
 import {DataType} from "./assets/scripts/global/DataTypes.js";
+import {TotalData} from "./assets/scripts/global/DataTypes.js";
 import * as CountryTotal from "./assets/scripts/CountryTotal.js";
 import * as dataAPI from "./assets/scripts/global/APIdata.js";
 
 import { Chart } from "./assets/scripts/charts/chart.js";
 export const newChart = new Chart();
-newChart.getChart("AL", 1);
+newChart.getChart("WD", 0);
 
 export const wrapBtn = new FullscreenBtnWrap("[data-wrap]");
 export const countryBtn = new FullscreenBtnCountry("[data-btn-country]", "[data-country]").showHideBtn().toggleFullscreen();
@@ -30,17 +31,14 @@ export const mapConfirmedRecovered = new InteractiveMap(mapsData.recovered).crea
 export const tabConfirmedRecovered = new MapTab(mapsData.recovered).createTab();
 
 export const globalDataType = new DataType();
-export const totalAPI = new dataAPI.APIData();
+export const globalTotalData = new TotalData();
+export const totalAPI = new dataAPI.APIData(globalTotalData, globalDataType);
 totalAPI.requestTotal();
-
 export const blockCountry = document.querySelector("[data-country]");
-
 export const totalContainer = new CountryTotal.Container("totalContainer", [ "countryContainer" ], blockCountry);
 export const totalBlock = 
   new CountryTotal.CountryBlock("totalBlock", [ "countryTotal" ], totalContainer.domElement);
-
 export const searchContainer = new CountryTotal.Container("searchContainer", [ "countryContainer" ], blockCountry);
 export const searchField = new CountryTotal.SearchBlock("searchBlock", [ "countrySearch" ], searchContainer.domElement);
-
 export const tableContainer = new CountryTotal.Container("tableContainer", [ "countryTableContainer" ], blockCountry);
 export const totalTable = new CountryTotal.CountryTable("countryTable", [ "countryTable" ], tableContainer.domElement);
