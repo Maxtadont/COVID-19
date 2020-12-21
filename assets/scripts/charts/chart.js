@@ -14,6 +14,7 @@ export class Chart {
 		this.chartDescription = document.createElement("p");
 		this.chartDescription.classList.add("highcharts-description");
 		this.chartFigure.appendChild(this.chartDescription);
+
 	}
 
 	getChart(country = "WD", type = 0, customColor) {
@@ -79,7 +80,10 @@ export class Chart {
 		this.chartDescription.style.color = lineColor;
 		Highcharts.chart("container", {
 			credits: { enabled: false },
-			chart: { backgroundColor: "#32476b", type: "area" },
+			chart: { 
+				backgroundColor: "#32476b", 
+				type: "area"
+			},
 			title: {
 				style: { "color": lineColor, "fontSize": "14px", fontFamily: "Montserrat" },
 				text: country

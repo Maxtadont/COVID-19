@@ -36,3 +36,6 @@ node_modules
 # Editors crap
 .vscode
 .idea
+
+# Linter
+package-lock.json
