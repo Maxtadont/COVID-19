@@ -158,7 +158,6 @@ export class MapTab {
         this.activateCurrentTab (currentTab)
         const currentMap = document.querySelector(`[data-map-${ currentTab.dataset.tab }]`)
         mapArea.changeMap(currentMap)
+        window.dispatchEvent(simulationChangeWindow)
     }
 }
-
- 
