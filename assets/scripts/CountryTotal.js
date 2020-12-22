@@ -4,11 +4,12 @@ import {globalDataType} from "../../main.js";
 import {globalTotalData} from "../../main.js";
 
 
-function addFilteredCountries(countryFilter = []) {
+function addFilteredCountries() {
   const curDataType = globalDataType.getDataType(MainElements.totalBlock.titleBlock.domElement.textContent);
-  if (countryFilter.length !== 0 ) {
+  const filter = globalTotalData.filterCountries(MainElements.searchField.searchInput.domElement.value);
+  if (filter.length !== 0 ) {
     MainElements.totalTable.removeCountries(); 
-    MainElements.totalTable.addCountries(countryFilter, curDataType);
+    MainElements.totalTable.addCountries(filter, curDataType);
   } else {
     MainElements.totalTable.addCountries(globalTotalData.getCountries(), curDataType);  
   }
@@ -17,9 +18,8 @@ function addFilteredCountries(countryFilter = []) {
 function nextDataType(element) {
   const nextType = globalDataType.getNextType(element.textContent);
   const curDataTotal = globalTotalData.getTotal();
-  MainElements.totalTable.removeCountries();
   MainElements.totalBlock.setDataType(nextType, curDataTotal[`${nextType.type}`]);
-  MainElements.totalTable.addCountries(globalTotalData.getCountries(), nextType);
+  addFilteredCountries();
 }
 
 function pointChartAndMapData(element) {
@@ -88,8 +88,7 @@ export class SearchField extends DOMObject {
     super(`${name}`, domElement);
     
     this.domElement.addEventListener("input", () => { 
-      const filter = globalTotalData.filterCountries(this.domElement.value);
-      addFilteredCountries(filter);
+      addFilteredCountries();
     });
   }
 }

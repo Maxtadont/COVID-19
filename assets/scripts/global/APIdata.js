@@ -1,5 +1,5 @@
 import * as MainElements from "../../../main.js";
-
+import * as LocalData from "./countries_test.js";
 export class APIData {
   constructor(dataStore, dataType) {
     this.requestOptions = {
@@ -28,6 +28,7 @@ export class APIData {
         this.getAPIData(data);        
       })
       .catch((error) => {
+        this.getAPIData(LocalData.coutriesTst);
         console.log("error:" + error);
         this.error = error;
       });
