@@ -13,7 +13,7 @@ import * as dataAPI from "./assets/scripts/global/APIdata.js";
 
 import { Chart } from "./assets/scripts/charts/chart.js";
 export const newChart = new Chart();
-newChart.getChart("AL", 1);
+newChart.getChart("WD", 0);
 
 export const wrapBtn = new FullscreenBtnWrap("[data-wrap]");
 export const countryBtn = new FullscreenBtnCountry("[data-btn-country]", "[data-country]").showHideBtn().toggleFullscreen();
