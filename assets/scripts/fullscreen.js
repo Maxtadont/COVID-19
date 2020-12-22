@@ -5,11 +5,6 @@ import {tableBtn} from "../../main.js";
 import {chartBtn} from "../../main.js";
 
 let simulationChangeWindow = new Event("resize", {bubbles: false});
-function setAsyncChange() {
-    setTimeout(() => {
-        window.dispatchEvent(simulationChangeWindow);
-    }, 0);
-}
 
 class FullscreenBtn {
     constructor(btnName, windowName) {
@@ -59,7 +54,6 @@ class FullscreenBtn {
 export class FullscreenBtnCountry extends FullscreenBtn {
     toggleFullscreen() {
         this.btn.addEventListener("click", () => {
-            setAsyncChange();
             if (this.isFullscreen()) {
                 this.removeFullscreenWindow();
                 wrapBtn.showWindow();
@@ -69,6 +63,7 @@ export class FullscreenBtnCountry extends FullscreenBtn {
                 wrapBtn.hideWindow();
                 mapBtn.hideWindow();
             }
+            window.dispatchEvent(simulationChangeWindow);
         });
         return this;
     }
@@ -77,7 +72,6 @@ export class FullscreenBtnCountry extends FullscreenBtn {
 export class FullscreenBtnMap extends FullscreenBtn {
     toggleFullscreen() {
         this.btn.addEventListener("click", () => {
-            setAsyncChange();
             if (this.isFullscreen()) {
                 this.removeFullscreenWindow();
                 wrapBtn.showWindow();
@@ -87,6 +81,7 @@ export class FullscreenBtnMap extends FullscreenBtn {
                 wrapBtn.hideWindow();
                 countryBtn.hideWindow();
             }
+            window.dispatchEvent(simulationChangeWindow);
         });
         return this;
     }
@@ -95,7 +90,6 @@ export class FullscreenBtnMap extends FullscreenBtn {
 export class FullscreenBtnTable extends FullscreenBtn {
     toggleFullscreen() {
         this.btn.addEventListener("click", () => {
-            setAsyncChange();
             if (this.isFullscreen()) {
                 wrapBtn.removeFullscreenWindow();
                 this.removeFullscreenWindow();
@@ -109,6 +103,7 @@ export class FullscreenBtnTable extends FullscreenBtn {
                 countryBtn.hideWindow();
                 chartBtn.hideWindow();
             }
+            window.dispatchEvent(simulationChangeWindow);
         });
         return this;
     }
@@ -117,7 +112,6 @@ export class FullscreenBtnTable extends FullscreenBtn {
 export class FullscreenBtnChart extends FullscreenBtn {
     toggleFullscreen() {
         this.btn.addEventListener("click", () => {
-            setAsyncChange();
             if (this.isFullscreen()) {
                 wrapBtn.removeFullscreenWindow();
                 this.removeFullscreenWindow();
@@ -131,6 +125,7 @@ export class FullscreenBtnChart extends FullscreenBtn {
                 countryBtn.hideWindow();
                 tableBtn.hideWindow();
             }
+            window.dispatchEvent(simulationChangeWindow);
         });
         return this;
     }

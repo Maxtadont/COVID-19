@@ -11,10 +11,23 @@ export class Chart {
 		this.chartContainer.setAttribute("id", "container");
 		this.chartFigure.appendChild(this.chartContainer);
 
-		this.chartDescription = document.createElement("p");
+		this.chartDescription = document.createElement("div");
 		this.chartDescription.classList.add("highcharts-description");
 		this.chartFigure.appendChild(this.chartDescription);
 
+		this.chartDescriptionItemLeft = document.createElement("i");
+		this.chartDescriptionItemLeft.classList.add("fas");
+		this.chartDescriptionItemLeft.classList.add("fa-chevron-circle-left");
+		this.chartDescription.appendChild(this.chartDescriptionItemLeft);
+
+		this.chartDescriptionText = document.createElement("p");
+		this.chartDescriptionText.classList.add("highcharts-text");
+		this.chartDescription.appendChild(this.chartDescriptionText);
+
+		this.chartDescriptionItemRight = document.createElement("i");
+		this.chartDescriptionItemRight.classList.add("fas");
+		this.chartDescriptionItemRight.classList.add("fa-chevron-circle-right");
+		this.chartDescription.appendChild(this.chartDescriptionItemRight);
 	}
 
 	getChart(country = "WD", type = 0, customColor) {
@@ -67,21 +80,27 @@ export class Chart {
 	}
 
 	changeChartType(type, customColor) {
-		const changeChartTypeByClick = () => {
+		const changeChartRight = () => {
 			type = (type + 1) % 3;
 			this.drawChart(this.getChartType(type).data, this.dates, this.country, this.getChartType(type).color, this.getChartType(type).type, customColor);
 		};
-		this.chartDescription.removeEventListener("click", changeChartTypeByClick);
-		this.chartDescription.addEventListener("click", changeChartTypeByClick);
+		const changeChartLeft = () => {
+			type = (type + 2) % 3;
+			this.drawChart(this.getChartType(type).data, this.dates, this.country, this.getChartType(type).color, this.getChartType(type).type, customColor);
+		};
+		this.chartDescriptionItemRight.removeEventListener("click", changeChartRight);
+		this.chartDescriptionItemRight.addEventListener("click", changeChartRight);
+		this.chartDescriptionItemLeft.removeEventListener("click", changeChartLeft);
+		this.chartDescriptionItemLeft.addEventListener("click", changeChartLeft);
 	}
 
 	drawChart(data, dates, country, color, type, lineColor = "#b9b9b9") {
-		this.chartDescription.innerText = type;
-		this.chartDescription.style.color = lineColor;
+		this.chartDescriptionText.innerText = type;
+		this.chartDescriptionText.style.color = lineColor;
 		Highcharts.chart("container", {
 			credits: { enabled: false },
 			chart: { 
-				backgroundColor: "#32476b", 
+				backgroundColor: "#32476b",
 				type: "area"
 			},
 			title: {
