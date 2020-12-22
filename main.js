@@ -11,6 +11,7 @@ import {DataType} from "./assets/scripts/global/DataTypes.js";
 import {TotalData} from "./assets/scripts/global/DataTypes.js";
 import * as CountryTotal from "./assets/scripts/CountryTotal.js";
 import * as dataAPI from "./assets/scripts/global/APIdata.js";
+import {Keyboard} from "./assets/scripts/keyboard.js"
 
 import { Chart } from "./assets/scripts/charts/chart.js";
 export const newChart = new Chart();
@@ -30,6 +31,7 @@ export const tabConfirmedDeaths = new MapTab(mapsData.deaths).createTab();
 export const mapConfirmedRecovered = new InteractiveMap(mapsData.recovered).createMapWrap().renderMap();
 export const tabConfirmedRecovered = new MapTab(mapsData.recovered).createTab();
 
+export const keyboard = new Keyboard();
 export const globalDataType = new DataType();
 export const globalTotalData = new TotalData();
 export const totalAPI = new dataAPI.APIData(globalTotalData, globalDataType);
