@@ -31,7 +31,6 @@ export const tabConfirmedDeaths = new MapTab(mapsData.deaths).createTab();
 export const mapConfirmedRecovered = new InteractiveMap(mapsData.recovered).createMapWrap().renderMap();
 export const tabConfirmedRecovered = new MapTab(mapsData.recovered).createTab();
 
-export const keyboard = new Keyboard();
 export const globalDataType = new DataType();
 export const globalTotalData = new TotalData();
 export const totalAPI = new dataAPI.APIData(globalTotalData, globalDataType);
@@ -44,3 +43,4 @@ export const searchContainer = new CountryTotal.Container("searchContainer", [ "
 export const searchField = new CountryTotal.SearchBlock("searchBlock", [ "countrySearch" ], searchContainer.domElement);
 export const tableContainer = new CountryTotal.Container("tableContainer", [ "countryTableContainer" ], blockCountry);
 export const totalTable = new CountryTotal.CountryTable("countryTable", [ "countryTable" ], tableContainer.domElement);
+export const keyboard = new Keyboard("keyboardBlock", searchField.searchInput.domElement, document.querySelector("body"));

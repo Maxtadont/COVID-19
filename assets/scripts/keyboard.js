@@ -1,19 +1,35 @@
 import {key_symbols} from "./global/keys.js";
+import {DOMObject} from "./DOMObject.js";
 
-const textArea = document.querySelector(".use-keyboard-input");
-const header = document.querySelector(".header");
-const cursorElement = "|";
-
-
-export class Keyboard {
+export class Keyboard extends DOMObject{
   #key_symbols = key_symbols;
-  constructor() {
-    this.elements = {
-      main: null,
-      keysContainer: null,
-      keys: []  
-    };
+  constructor(name, input, parent) {
+    const domElement = {parent: parent, blockType: "div", classes: [ "keyboard" ]};
+    super(`${name}`, domElement);
+    this.input = input;
+    this.keysContainer = null;
+    this.keys = []
+    this.init();
   }
+
+  assignElement(element) {
+    this.input = element;
+  }
+
+  init() {
+    this.keysContainer = new KeysContainer("keyboard-keysContainer", [ "keyboard__keys" ], this.domElement);
+  }
+}
+
+class KeysContainer extends DOMObject{
+  constructor(name, classes, parent) {
+    const domElement = {parent: parent, blockType: "div", classes: classes};
+    super(`${name}`, domElement);
+  }  
+}
+
+class Keys extends DOMObject {
+
 }
 
 /*const textArea = document.querySelector(".use-keyboard-input");
@@ -42,11 +58,10 @@ const Keyboard = {
     soundOn: false,
     micOn: false,
     pos: 0,
-
   },
 
 
-  init() {
+  initKeyboard() {
     this.elements.main = document.createElement("div");
     this.elements.keysContainer = document.createElement("div");
     

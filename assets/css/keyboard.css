@@ -21,23 +21,6 @@
   word-wrap: normal;
 }
 
-.cursor {
-  color: #08ff00;
-  animation: blink-cursor 1000ms linear infinite;
-}
-
-@keyframes blink-cursor {
-  0% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
 .keyboard {
   position: fixed;
   width: 100%;

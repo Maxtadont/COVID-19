@@ -58,7 +58,5 @@ export const key_symbols = [
   
   {val: "HIDE", shift_val: "HIDE", ru_val: "HIDE", ru_shift_val: "HIDE", end_row: false, keyCode: "Hide"},
   {val: "SPACE", shift_val: "SPACE", ru_val: "SPACE", ru_shift_val: "SPACE", end_row: false, keyCode: "Space"},
-  {val: "EN", shift_val: "EN", ru_val: "RU", ru_shift_val: "RU", end_row: false, keyCode: "EngRus"},
-  {val: "SND", shift_val: "SND", ru_val: "SND", ru_shift_val: "SND", end_row: false, keyCode: "Sound"},
-  {val: "MIC", shift_val: "MIC", ru_val: "MIC", ru_shift_val: "MIC", end_row: true, keyCode: "Mic"}
+  {val: "EN", shift_val: "EN", ru_val: "RU", ru_shift_val: "RU", end_row: true, keyCode: "EngRus"}
 ];
