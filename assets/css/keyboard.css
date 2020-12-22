@@ -1,0 +1,145 @@
+:root {
+  --norm-wide: 4%;
+  --double-wide: calc(var(--norm-wide) * 2.5);
+  --extra-wide: calc(var(--norm-wide) * 5);
+  --min-width: 450px;
+}
+
+.use-keyboard-input {
+  display: block;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  width: 95%;
+  height: 50vh;
+  margin: 10px auto;
+  padding: 0px;
+  font-size: 25px;
+  background: black;
+  color: #08ff00;
+  resize: none;
+  outline: none;
+  border-radius: 5px;
+  word-wrap: normal;
+}
+
+.cursor {
+  color: #08ff00;
+  animation: blink-cursor 1000ms linear infinite;
+}
+
+@keyframes blink-cursor {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.keyboard {
+  position: fixed;
+  width: 100%;
+  padding: 10px 0px;
+  background: white;
+  user-select: none;
+  transition: bottom 1s;
+  border-radius: 5px;
+  bottom: 0px;
+}
+
+.keyboard--hidden {
+  bottom: -100%;
+}
+
+.keyboard__keys {
+  width: 100vw;
+  text-align: center;
+}
+
+.keyboard__key {
+  height: 45px;
+  width: var(--norm-wide);
+  max-width: 200px;
+  margin: 2px 2px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.2);
+  color: black;
+  font-size: 20px;
+  outline: none;
+  cursor: pointer;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  vertical-align: top;
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+  box-shadow: 2px 2px 2px gray;
+  border: 1px solid gray;
+}
+
+.keyboard__key:active {
+  box-shadow: none;
+  border: 1px solid rgb(177, 175, 175);
+}
+
+.keyboard__key--pressed {
+  background: silver;
+  box-shadow: none;
+  border: 1px solid rgb(177, 175, 175);
+}
+
+.keyboard__key--wide {
+  width: var(--double-wide);
+  max-width: 100px;
+  min-width: 40px;
+}
+
+.keyboard__key--extra-wide {
+  width: var(--extra-wide);
+  max-width: 300px;
+  min-width: 80px;
+}
+
+.keyboard__key--activatable::after {
+  content: '';
+  top: 5px;
+  right: 5px;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border: 1px solid gray;
+  background: silver;
+  border-radius: 50%;
+}
+
+.keyboard__key--active::after {
+  background: lime;
+  border: 1px solid rgb(24, 117, 24);
+}
+
+@media screen and (max-width: 600px) {
+  .keyboard__key {
+    font-size: 14px;
+    height: 25px;
+  }
+
+  .keyboard__key--activatable::after {
+    width: 2px;
+    height: 2px;  
+  }
+}
+
+@media screen and (max-height: 600px) {
+  .keyboard__key {
+    font-size: 14px;
+    height: 25px;
+  }
+
+  .keyboard__key--activatable::after {
+    width: 2px;
+    height: 2px;  
+  }
+}
