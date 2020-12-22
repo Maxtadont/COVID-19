@@ -3,6 +3,8 @@ import { newChart } from "../../../main.js";
 import { codes } from "./countryCodes.js";
 import { insertMap } from "./highChartMap.js";
 
+let simulationChangeWindow = new Event("resize", {bubbles: false});
+
 export const mapsData = { 
     cases: { 
         'name': 'confirmed_cases',
