@@ -96,7 +96,7 @@
   width: 20%;
 }
 
-@media(max-width: 1028px) {
+@media(max-width: 1212px) {
   .countryTotal__title {
     font-size: 1rem;
   }
@@ -105,6 +105,17 @@
   }
   .countryTableContainer {
     height: calc(100% - 120px); 
+  }
+}
+@media(max-width: 880px) {
+  .countryTotal__title {
+    font-size: 0.8rem;
+  }
+  .countryTotal__value {
+    font-size: 1.7rem;
+  }
+  .countryTableContainer {
+    height: calc(100% - 111px); 
   }
 }
 
