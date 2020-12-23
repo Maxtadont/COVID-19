@@ -19,7 +19,7 @@ export class Table {
             method: 'GET',
             redirect: 'follow'
           };
-           const response = await fetch("https://api.covid19api.com/summfary", requestOptions)
+           const response = await fetch("https://api.covid19api.com/summary", requestOptions)
            this.dataBuffer = await response.json()
            return this.dataBuffer
     }
@@ -41,7 +41,6 @@ export class Table {
         });
     }
     addGlobalIndicators(obj) {
-        console.log(obj)
         this.tableContent.innerHTML = ''
         this.subHeading.textContent = `unit of measures, ${this.unitsMeasures}`
         this.tableHeading.textContent = 'Global COVID-19 statistic'
@@ -79,8 +78,6 @@ export class Table {
         toggler.style.display = 'flex'
     }
     handleData() {
-        console.log(this.dataBuffer.Global)
-        console.log(this.dataBuffer.Countries)
         this.handledData.Global = setNewName(this.dataBuffer.Global)
         this.handledData.Countries = getMainProperties(this.dataBuffer.Countries)
     }
