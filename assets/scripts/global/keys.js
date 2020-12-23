@@ -19,8 +19,7 @@ export const key_symbols = [
   {val: "h", shift_val: "H", ru_val: "р", ru_shift_val: "Р", end_row: false, keyCode: "KeyH"},
   {val: "j", shift_val: "J", ru_val: "о", ru_shift_val: "О", end_row: false, keyCode: "KeyJ"},
   {val: "k", shift_val: "K", ru_val: "л", ru_shift_val: "Л", end_row: false, keyCode: "KeyK"},
-  {val: "l", shift_val: "L", ru_val: "д", ru_shift_val: "Д", end_row: false, keyCode: "KeyL"},
-  {val: "CAPS", shift_val: "CAPS", ru_val: "CAPS", ru_shift_val: "CAPS", end_row: true, keyCode: "CapsLock"},
+  {val: "l", shift_val: "L", ru_val: "д", ru_shift_val: "Д", end_row: true, keyCode: "KeyL"},
 
   {val: "z", shift_val: "Z", ru_val: "я", ru_shift_val: "Я", end_row: false, keyCode: "KeyZ"},
   {val: "x", shift_val: "X", ru_val: "ч", ru_shift_val: "Ч", end_row: false, keyCode: "KeyX"},
