@@ -16,18 +16,33 @@ export const insertMap = function (data,mapObj) {
             text: "COVID-19 distribution map",
             style: { 
                 "color": "#b9b9b9",
-                "fontSize": "18px" 
+                "fontSize": "18px",
+                "fontFamily": "Montserrat"
             }
         },
         subtitle: {
             text: mapObj.text,
             style: { 
                 "color": "#b9b9b9",
-                "fontSize": "12px"
+                "fontSize": "12px",
+                "fontFamily": "Montserrat"
             }
         },
         legend: {
-            enabled: false
+                align: 'center',
+                verticalAlign: 'bottom',
+                layout: 'vertical',
+                valueDecimals: 0,
+                backgroundColor: 'rgba(255,255,255,0.0)',
+                itemStyle: {
+                    fontFamily: "Montserrat",
+                    color: 'white',
+                    textDecoration: 'none'
+                },
+                itemHoverStyle: {
+                    textDecoration: 'underline'
+                }
+            
         },
         plotOptions: {
             map: {
@@ -43,10 +58,11 @@ export const insertMap = function (data,mapObj) {
         series: [ {
             name: "Countries",
             enableMouseTracking: true,
-            opacity: "0.5"
+            opacity: "0.5",
+            showInLegend: false
         }, {
             type: "mapbubble",
-            name: mapObj.text,
+            name: `${mapObj.text}, person`,
             joinBy: [ "iso-a3", "code3" ],
             data: data,
             animation: true,
