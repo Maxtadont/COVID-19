@@ -345,3 +345,23 @@ body {
     display: none;
   }
 }
+
+/* Styles for scroll bar */
+  ::-webkit-scrollbar-track {
+    background-color:#b9b9b9;
+  }
+  ::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 0px;
+    border-radius: 8px;
+    background-color:#111824;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color:#17305a;
+  }
+  ::-webkit-resizer {
+    width: 4px;
+    height: 0px;
+  }
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
