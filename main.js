@@ -8,6 +8,7 @@ import {MapTab} from "./assets/scripts/maps/maps.js";
 import {mapsData} from "./assets/scripts/maps/maps.js";
 import {MapArea} from "./assets/scripts/maps/maps.js";
 import {DataType} from "./assets/scripts/global/DataTypes.js";
+import {Table} from "./assets/scripts/table/countryTable.js"
 import {TotalData} from "./assets/scripts/global/DataTypes.js";
 import * as CountryTotal from "./assets/scripts/CountryTotal.js";
 import * as dataAPI from "./assets/scripts/global/APIdata.js";
@@ -44,3 +45,5 @@ export const searchField = new CountryTotal.SearchBlock("searchBlock", [ "countr
 export const tableContainer = new CountryTotal.Container("tableContainer", [ "countryTableContainer" ], blockCountry);
 export const totalTable = new CountryTotal.CountryTable("countryTable", [ "countryTable" ], tableContainer.domElement);
 export const keyboard = new Keyboard("keyboardBlock", searchField.searchInput.domElement, document.querySelector("body"));
+export const indicatorTable = new Table()
+indicatorTable.createTable()

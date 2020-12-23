@@ -2,6 +2,7 @@ import { mapArea } from "../../../main.js";
 import { newChart } from "../../../main.js";
 import { codes } from "./countryCodes.js";
 import { insertMap } from "./highChartMap.js";
+import { indicatorTable } from "../../../main.js";
 
 let simulationChangeWindow = new Event("resize", {bubbles: false});
 
@@ -53,6 +54,7 @@ export class MapArea {
         const countries = document.querySelectorAll(`[data-country = ${ code }]`)
         countries.forEach(item => item.classList.add('chosen_country'))
         newChart.getChart(code)
+        indicatorTable.addCountryIndicators(code)
     }
 }
 export class InteractiveMap { 
