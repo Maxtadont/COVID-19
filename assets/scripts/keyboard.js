@@ -1,5 +1,6 @@
 import {key_symbols} from "./global/keys.js";
 import {DOMObject} from "./DOMObject.js";
+import  * as CountyTotal from "./CountryTotal.js";
 
 export class Keyboard extends DOMObject{
   #key_symbols = key_symbols;
@@ -11,21 +12,13 @@ export class Keyboard extends DOMObject{
     this.keys = []
     this.init();
     this.hide();
-    this.properties = {
-      value: "",
-      value2: "",
-      capsLock: false,
-      shift: false,
-      russian: false,
-      soundOn: false,
-      micOn: false,
-      pos: 0
-    }
+    this.capsLock = false;
   }
   
   init() {
     this.keysContainer = new KeysContainer("keyboard-keysContainer", [ "keyboard__keys" ], this.domElement);
-    this.createKeys(this, this.input);
+    this.createKeys(this.keysContainer, this.input);
+    this.keys = document.querySelectorAll(".keyboard__key");
   }
 
   createKeys(parent, input) {
@@ -40,48 +33,25 @@ export class Keyboard extends DOMObject{
         case "Backspace":          
           keyElement.classList.add("keyboard__key--wide");
           keyElement.addEventListener("click", () => {            
-            this.properties.value = this.properties.value.substring(0, this.properties.value.length - 1);
-            input.value = this.properties.value;            
+            input.value = input.value.substring(0, input.value.length - 1); 
+            CountyTotal.addFilteredCountries();                                   
           });
           break;
         
-        case "Tab":
-          keyElement.classList.add("keyboard__key--wide");
-          keyElement.addEventListener("click", () => {
-            this.properties.value += '\t';
-            input.value = this.properties.value;
-          });
-          break;
-
         case "Space":
           keyElement.classList.add("keyboard__key--extra-wide");
-          keyElement.addEventListener("click", () => {
-            this.properties.value += " ";
-            input.value = this.properties.value;
+          keyElement.addEventListener("click", () => {          
+            input.value += " ";      
+            CountyTotal.addFilteredCountries();
           });
           break;
 
-        case "EngRus":
-          keyElement.classList.add("keyboard__key--wide", "keyboard__key--activatable");
-          keyElement.addEventListener("click", () => {
-            this.toggleEngRus();
-            keyElement.classList.toggle("keyboard__key--active", this.properties.russian);  
-          });
-          break;
-        
         case "CapsLock":
           keyElement.classList.add("keyboard__key--wide", "keyboard__key--activatable");
           keyElement.addEventListener("click", () => {
             this.toggleCapsLock();
+            this.toggleKeys();
             keyElement.classList.toggle("keyboard__key--active", this.properties.capsLock);
-          });
-          break;
-
-        case "ShiftLeft":
-          keyElement.classList.add("keyboard__key--wide", "keyboard__key--activatable");
-          keyElement.addEventListener("click", () => {
-            this.toggleShift();
-            keyElement.classList.toggle("keyboard__key--active", this.properties.shift);
           });
           break;
         
@@ -93,9 +63,9 @@ export class Keyboard extends DOMObject{
           break;
 
         default:
-          keyElement.addEventListener("click", () => {            
-            this.properties.value += this.getKeyValue(key);          
-            input.value = this.properties.value;
+          keyElement.addEventListener("click", () => {                        
+            input.value += this.getKeyValue(key);
+            CountyTotal.addFilteredCountries();
           });
           break;
       }      
@@ -107,92 +77,60 @@ export class Keyboard extends DOMObject{
   }
 
   getKeyValue(key) {
-    if (!this.properties.russian && this.properties.capsLock && this.properties.shift) {
-      if (key.val.toUpperCase() === key.shift_val)
-        return key.val;
-      else
-        return key.shift_val;
-    }
-    else if (!this.properties.russian && this.properties.capsLock && !this.properties.shift) {
-      return key.val.toUpperCase();
-    }
-    else if (!this.properties.russian && !this.properties.capsLock && this.properties.shift) {
-      return key.shift_val;
-    }
-    else if (!this.properties.russian && !this.properties.capsLock && !this.properties.shift) {
+    if (this.capsLock) {
+      return key.val.toUpperCase();      
+    } else {
       return key.val;
     }
-    else if (this.properties.russian && this.properties.capsLock && this.properties.shift) {
-      if (key.ru_val.toUpperCase() === key.ru_shift_val)
-        return key.ru_val;
-      else
-        return key.ru_shift_val;
-    }
-    else if (this.properties.russian && this.properties.capsLock && !this.properties.shift) {
-      return key.ru_val.toUpperCase();
-    }
-    else if (this.properties.russian && !this.properties.capsLock && this.properties.shift) {
-      return key.ru_shift_val;
-    }
-    else if (this.properties.russian && !this.properties.capsLock && !this.properties.shift) {
-      return key.ru_val;
-    }  
   }
 
   toggleKeys() {
-    for (let i = 0; i < this.elements.keys.length; i++) {
-      let key = this.elements.keys[i];
+    console.log(this.keys.length);
+    for (let i = 0; i < this.keys.length; i++) {      
+      let key = this.keys[i];
       if (!this.properties.russian && this.properties.capsLock && this.properties.shift) {
-        if (en_keys[i].val.toUpperCase() === en_keys[i].shift_val)
-          key.textContent = en_keys[i].val;
+        if (this.#key_symbols[i].val.toUpperCase() === this.#key_symbols[i].shift_val)
+          key.textContent = this.#key_symbols[i].val;
         else
-        key.textContent = en_keys[i].shift_val;
+        key.textContent = this.#key_symbols[i].shift_val;
       }
       else if (!this.properties.russian && this.properties.capsLock && !this.properties.shift) {
         try {
-          key.textContent = en_keys[i].val.toUpperCase();
+          key.textContent = this.#key_symbols[i].val.toUpperCase();
         } catch(e) {
-          key.textContent = en_keys[i].val;
+          key.textContent = this.#key_symbols[i].val;
         }
       }
       else if (!this.properties.russian && !this.properties.capsLock && this.properties.shift) {
-        key.textContent = en_keys[i].shift_val;
+        key.textContent = this.#key_symbols[i].shift_val;
       }
       else if (!this.properties.russian && !this.properties.capsLock && !this.properties.shift) {
-        key.textContent = en_keys[i].val;
+        key.textContent = this.#key_symbols[i].val;
       }
       else if (this.properties.russian && this.properties.capsLock && this.properties.shift) {
-        if (en_keys[i].ru_val.toUpperCase() === en_keys[i].ru_shift_val)
-          key.textContent = en_keys[i].ru_val;
+        if (this.#key_symbols[i].ru_val.toUpperCase() === this.#key_symbols[i].ru_shift_val)
+          key.textContent = this.#key_symbols[i].ru_val;
         else
-        key.textContent = en_keys[i].ru_shift_val;
+        key.textContent = this.#key_symbols[i].ru_shift_val;
       }
       else if (this.properties.russian && this.properties.capsLock && !this.properties.shift) {
         try {
-          key.textContent = en_keys[i].ru_val.toUpperCase();
+          key.textContent = this.#key_symbols[i].ru_val.toUpperCase();
         } catch(e) {
-          key.textContent = en_keys[i].ru_val;
+          key.textContent = this.#key_symbols[i].ru_val;
         }
       }
       else if (this.properties.russian && !this.properties.capsLock && this.properties.shift) {
-        key.textContent = en_keys[i].ru_shift_val;
+        key.textContent = this.#key_symbols[i].ru_shift_val;
       }
       else if (this.properties.russian && !this.properties.capsLock && !this.properties.shift) {
-        key.textContent = en_keys[i].ru_val;
+        key.textContent = this.#key_symbols[i].ru_val;
       }
     }
   }
 
   toggleCapsLock() {
-    this.properties.capsLock = !this.properties.capsLock;
-  }
-
-  toggleShift() {
-    this.properties.shift = !this.properties.shift;
-  }
-
-  toggleEngRus() {
-    this.properties.russian = !this.properties.russian;
+    this.capsLock = !this.capsLock;
   }
 
   hide() {
@@ -203,7 +141,7 @@ export class Keyboard extends DOMObject{
     this.domElement.classList.remove("keyboard--hidden");
   }
 
-  isVisible() {
+  isHidden() {
     return this.domElement.classList.contains("keyboard--hidden");
   }
 }

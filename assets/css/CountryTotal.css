@@ -62,7 +62,7 @@
   justify-content: flex-start;
   background: #111824;
   width: 100%;
-  height: calc(80% - 5px); 
+  height: calc(100% - 136px); 
   padding: 0 0 5px;
   overflow-y: auto;
   border: 1px solid rgba(255, 255, 255, 0.2);

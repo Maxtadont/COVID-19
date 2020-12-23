@@ -3,8 +3,7 @@ import * as MainElements from "../../main.js";
 import {globalDataType} from "../../main.js";
 import {globalTotalData} from "../../main.js";
 
-
-function addFilteredCountries() {
+export function addFilteredCountries() {
   const curDataType = globalDataType.getDataType(MainElements.totalBlock.titleBlock.domElement.textContent);
   const filter = globalTotalData.filterCountries(MainElements.searchField.searchInput.domElement.value);
   if (filter.length !== 0 ) {
@@ -31,6 +30,15 @@ function pointChartAndMapData(element) {
     MainElements.newChart.getChart(attribute, dataType.code); 
   }
 }
+
+function toggleVirtualKeyBoard() {
+  if (MainElements.keyboard.isHidden()) {
+    MainElements.keyboard.show();
+  } else {
+    MainElements.keyboard.hide();    
+  }
+}
+
 export class Container extends DOMObject {
   constructor (name, classes, parent) {
     const domElement = {parent: parent, blockType: "div", classes: classes};
@@ -97,15 +105,11 @@ export class SearchKeyBoardButton extends DOMObject {
   constructor (name, classes, parent) {
     const domElement = {parent: parent, blockType: "button", classes: classes};
     super(`${name}`, domElement);
-    this.keyboard = null;
+    this.domElement.innerHTML = "<i class=\"fas fa-keyboard\"></i>";
     this.domElement.addEventListener("click", () => {
-      //
+      toggleVirtualKeyBoard();
     });
   }  
-
-  assignKeybord(element){
-    this.keyboard = element;
-  }
 }
 
 export class CountryTable extends DOMObject {

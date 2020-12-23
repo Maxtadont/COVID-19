@@ -11,7 +11,7 @@ import {DataType} from "./assets/scripts/global/DataTypes.js";
 import {TotalData} from "./assets/scripts/global/DataTypes.js";
 import * as CountryTotal from "./assets/scripts/CountryTotal.js";
 import * as dataAPI from "./assets/scripts/global/APIdata.js";
-import {Keyboard} from "./assets/scripts/keyboard.js"
+import {Keyboard} from "./assets/scripts/keyboard.js";
 
 import { Chart } from "./assets/scripts/charts/chart.js";
 export const newChart = new Chart();
