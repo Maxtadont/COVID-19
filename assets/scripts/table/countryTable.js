@@ -1,7 +1,7 @@
 import {setNewName} from './handlingData.js'
 import {getMainProperties} from './handlingData.js'
 import {indicatorTable} from '../../../main.js'
-
+import {apiReserv} from "./APIreserv.js"
 export class Table {
     constructor() {
         this.tableContainer = document.querySelector('[data-table]')
@@ -33,6 +33,12 @@ export class Table {
         this.getJSONData()
         .then(() => this.handleData())
         .then(() => this.addGlobalIndicators(this.handledData.Global))
+        .catch(error => {
+            this.dataBuffer = apiReserv
+            this.handleData()
+            this.addGlobalIndicators(this.handledData.Global)
+            console.log('error', error)
+        });
     }
     addGlobalIndicators(obj) {
         this.tableContent.innerHTML = ''
