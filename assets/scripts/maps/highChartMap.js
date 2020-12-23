@@ -15,15 +15,9 @@ export const insertMap = function (data,mapObj) {
         title: {
             text: "COVID-19 distribution map",
             style: { 
-<<<<<<< HEAD
-                color: "#b9b9b9",
-                fontSize: "18px" ,
-                fontFamily: "Montserrat"
-=======
                 "color": "#b9b9b9",
                 "fontSize": "18px",
                 "fontFamily": "Montserrat"
->>>>>>> 4512e89d0531d3a616d14d1c15b90b81fa57147c
             }
         },
         subtitle: {
