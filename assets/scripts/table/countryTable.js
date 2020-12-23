@@ -1,7 +1,7 @@
 import {setNewName} from './handlingData.js'
 import {getMainProperties} from './handlingData.js'
 import {indicatorTable} from '../../../main.js'
-
+import {apiReserv} from "./APIreserv.js"
 export class Table {
     constructor() {
         this.tableContainer = document.querySelector('[data-table]')
@@ -19,7 +19,7 @@ export class Table {
             method: 'GET',
             redirect: 'follow'
           };
-           const response = await fetch("https://api.covid19api.com/summary", requestOptions)
+           const response = await fetch("https://api.covid19api.com/summfary", requestOptions)
            this.dataBuffer = await response.json()
            return this.dataBuffer
     }
@@ -33,8 +33,15 @@ export class Table {
         this.getJSONData()
         .then(() => this.handleData())
         .then(() => this.addGlobalIndicators(this.handledData.Global))
+        .catch(error => {
+            this.dataBuffer = apiReserv
+            this.handleData()
+            this.addGlobalIndicators(this.handledData.Global)
+            console.log('error', error)
+        });
     }
     addGlobalIndicators(obj) {
+        console.log(obj)
         this.tableContent.innerHTML = ''
         this.subHeading.textContent = `unit of measures, ${this.unitsMeasures}`
         this.tableHeading.textContent = 'Global COVID-19 statistic'
@@ -72,6 +79,8 @@ export class Table {
         toggler.style.display = 'flex'
     }
     handleData() {
+        console.log(this.dataBuffer.Global)
+        console.log(this.dataBuffer.Countries)
         this.handledData.Global = setNewName(this.dataBuffer.Global)
         this.handledData.Countries = getMainProperties(this.dataBuffer.Countries)
     }
