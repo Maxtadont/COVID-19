@@ -10,6 +10,8 @@ module.exports = {
     },
     "rules": {
         "array-bracket-spacing": [ 2, "always" ],
-        "accessor-pairs": [ 2, {"getWithoutSet": true} ]
+        "accessor-pairs": [ 2, {"getWithoutSet": true} ],
+        "semi": [ "error", "always" ],
+        "quotes": [ "error", "double" ]
     }
 };

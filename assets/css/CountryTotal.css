@@ -2,6 +2,7 @@
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
+  flex-direction: column;
   background: #111824;
   width: 100%;
   padding: 0 0 5px;
@@ -11,12 +12,18 @@
 .countryTotal, .countrySearch {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  width: 100%;
-  background: #32476b;
   align-items: center;
   justify-content: center;
+  flex-wrap: nowrap;
+  width: 100%;
+  background: #32476b;
   border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.countrySearch {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
 }
 
 .countryTotal {
@@ -39,8 +46,14 @@
   outline-style: none;
   height: 2rem;
   margin: 5px;
-  width: 90%;
+  width: 80%;
   max-width: 300px;
+}
+
+.countrySearch__btn {
+  outline-style: none;
+  height: 2rem;
+  padding: 10px;
 }
 
 .countryTableContainer {
@@ -49,9 +62,10 @@
   justify-content: flex-start;
   background: #111824;
   width: 100%;
-  height: 80%; 
+  height: calc(80% - 5px); 
   padding: 0 0 5px;
   overflow-y: auto;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .countryTable {
@@ -65,18 +79,13 @@
 
 .countryTable__row {
   align-items: center;
-  overflow-wrap: normal;
   border-bottom: 1px solid rgb(31, 31, 31);
   transition: 0.2s;
   text-shadow: 2px 2px 20px black;
 }
 
-.countryTable__row:hover {
-  color: rgb(39, 194, 233);
-}
-
-.countryTable__cellName, .countryTable__cellFlag {
-  font-size: 1rem;
+.countryTable__cellName, .countryTable__cellFlag, .countryTable__cellValue {
+  font-size: 1.1rem;
   color: rgb(223, 219, 219);
 }
 
@@ -85,17 +94,36 @@
 }
 
 .countryTable__cellFlag {
-  width: 10%;
+  width: 20%;
 }
 
 .countryTable__cellFlag__img {
-  width: 3rem;
+  width: 2rem;
 }
 
 .countryTable__cellValue {
-  width: 20%; 
-  font-size: 1.2rem;
+  width: 20%;
 }
 
-
-
+@media (min-width: 768px) and (max-width: 1212px) {
+  .countryTotal__title {
+    font-size: 1rem;
+  }
+  .countryTotal__value {
+    font-size: 2rem;
+  }
+  .countryTableContainer {
+    height: calc(100% - 120px); 
+  }
+}
+@media (min-width: 768px) and (max-width: 880px) {
+  .countryTotal__title {
+    font-size: 0.8rem;
+  }
+  .countryTotal__value {
+    font-size: 1.7rem;
+  }
+  .countryTableContainer {
+    height: calc(100% - 111px); 
+  }
+}

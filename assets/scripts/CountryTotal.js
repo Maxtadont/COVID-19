@@ -1,20 +1,34 @@
-import * as Countries from "./global/countries_test.js";
 import {DOMObject} from "./DOMObject.js";
 import * as MainElements from "../../main.js";
+import {globalDataType} from "../../main.js";
+import {globalTotalData} from "../../main.js";
 
+
+function addFilteredCountries() {
+  const curDataType = globalDataType.getDataType(MainElements.totalBlock.titleBlock.domElement.textContent);
+  const filter = globalTotalData.filterCountries(MainElements.searchField.searchInput.domElement.value);
+  if (filter.length !== 0 ) {
+    MainElements.totalTable.removeCountries(); 
+    MainElements.totalTable.addCountries(filter, curDataType);
+  } else {
+    MainElements.totalTable.addCountries(globalTotalData.getCountries(), curDataType);  
+  }
+}
 
 function nextDataType(element) {
-  const nextType = MainElements.globalDataType.getNextType(element.textContent);
-  MainElements.totalTable.removeCountries();
-  MainElements.totalBlock.setDataType(nextType, MainElements.totalAPI.dataTotal[`${nextType.type}`]);
-  MainElements.totalTable.addCountries(MainElements.totalAPI.countries, nextType);
+  const nextType = globalDataType.getNextType(element.textContent);
+  const curDataTotal = globalTotalData.getTotal();
+  MainElements.totalBlock.setDataType(nextType, curDataTotal[`${nextType.type}`]);
+  addFilteredCountries();
 }
 
 function pointChartAndMapData(element) {
   const attribute = element.getAttribute("code2");
+  const title = document.getElementById("data-countryTotal-title").textContent;
+  const dataType = globalDataType.getDataType(title);
   if (attribute !== null) {
-    MainElements.newChart.getChart(attribute, 2); 
     MainElements.mapArea.chooseCountry(attribute); 
+    MainElements.newChart.getChart(attribute, dataType.code); 
   }
 }
 
@@ -34,7 +48,7 @@ export class CountryBlock extends DOMObject {
     this.valueBlock = new CountryTotalTitle("data-countryTotal-value", [ "countryTotal__value" ], this.domElement);
     this.domElement.addEventListener("click", (event) => {      
       nextDataType(event.target);
-    })
+    });
   }
 
   setDataType(dataType, value) {
@@ -74,14 +88,8 @@ export class SearchField extends DOMObject {
     super(`${name}`, domElement);
     
     this.domElement.addEventListener("input", () => { 
-      this.findCountry(Countries.coutriesTst, this.domElement.value);
+      addFilteredCountries();
     });
-  }
-
-  findCountry(countries, country) {
-    const result = countries.find(element => element.Country === country);
-    console.log(result);
-    return result;
   }
 }
 
@@ -94,7 +102,7 @@ export class CountryTable extends DOMObject {
 
     this.domElement.addEventListener("click", (event) => {      
       pointChartAndMapData(event.target);
-    })
+    });
   }
 
   removeCountries() {
@@ -112,7 +120,7 @@ export class CountryTable extends DOMObject {
     });  
     this.data.forEach(element => {
       if (element[`${dataType.type}`] > 0) {
-        const dataRow = {"data": element, "type": `${dataType.type}`}
+        const dataRow = {"data": element, "type": `${dataType.type}`};
         this.rows.push(new CountryRow(`data-countryTable-${element.Country}`, dataRow, this.domElement));        
         const currentRow = document.getElementById(`data-countryTable-${element.Country}`);
         if (currentRow !== null) {

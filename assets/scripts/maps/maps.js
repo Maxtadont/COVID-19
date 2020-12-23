@@ -2,6 +2,9 @@ import { mapArea } from "../../../main.js";
 import { newChart } from "../../../main.js";
 import { codes } from "./countryCodes.js";
 import { insertMap } from "./highChartMap.js";
+import { indicatorTable } from "../../../main.js";
+
+let simulationChangeWindow = new Event("resize", {bubbles: false});
 
 export const mapsData = { 
     cases: { 
@@ -51,6 +54,7 @@ export class MapArea {
         const countries = document.querySelectorAll(`[data-country = ${ code }]`)
         countries.forEach(item => item.classList.add('chosen_country'))
         newChart.getChart(code)
+        indicatorTable.addCountryIndicators(code)
     }
 }
 export class InteractiveMap { 
@@ -77,7 +81,7 @@ export class InteractiveMap {
             method: 'GET',
             redirect: 'follow'
           };
-        fetch("../../../data.json", requestOptions)
+        fetch("https://api.covid19api.com/summary", requestOptions)
           .then(response => response.json())
           .then(json => this.buffer = json.Countries)
           .then(() => this.handleData())
@@ -158,7 +162,6 @@ export class MapTab {
         this.activateCurrentTab (currentTab)
         const currentMap = document.querySelector(`[data-map-${ currentTab.dataset.tab }]`)
         mapArea.changeMap(currentMap)
+        window.dispatchEvent(simulationChangeWindow)
     }
 }
-
- 
