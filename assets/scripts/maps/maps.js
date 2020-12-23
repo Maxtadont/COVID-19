@@ -24,7 +24,7 @@ export const mapsData = {
         'name': 'confirmed_recovered',
         'text': 'Confirmed recovered', 
         'json': 'TotalRecovered',
-        'color': '#008000',
+        'color': '#00FF00',
         'state': 'none' 
     }
 }
