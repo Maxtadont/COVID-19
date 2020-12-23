@@ -1,4 +1,5 @@
 [data-map-container]{
+    height: calc(100% - 50px);
     position: relative;
 }
 .highcharts-background {
@@ -7,9 +8,9 @@
 [data-map-confirmed_cases],
 [data-map-confirmed_deaths],
 [data-map-confirmed_recovered] {
-    width: 90%;
-    height: 90%;
-    margin: 50px auto 30px;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
     padding: 10 auto;
     display: none;
 }

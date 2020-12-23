@@ -37,11 +37,14 @@
     background: #f1f7ff;
 }
 .highcharts-description {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-transform: uppercase;
     cursor: pointer;
     margin: 0;
     text-align: center;
 }
-.highcharts-description:hover {
-    color: white;
+.highcharts-text {
+    margin: 0 10px -1px 10px;
 }

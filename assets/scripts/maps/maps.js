@@ -3,6 +3,8 @@ import { newChart } from "../../../main.js";
 import { codes } from "./countryCodes.js";
 import { insertMap } from "./highChartMap.js";
 
+let simulationChangeWindow = new Event("resize", {bubbles: false});
+
 export const mapsData = { 
     cases: { 
         'name': 'confirmed_cases',
@@ -158,7 +160,6 @@ export class MapTab {
         this.activateCurrentTab (currentTab)
         const currentMap = document.querySelector(`[data-map-${ currentTab.dataset.tab }]`)
         mapArea.changeMap(currentMap)
+        window.dispatchEvent(simulationChangeWindow)
     }
 }
-
- 
