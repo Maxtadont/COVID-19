@@ -45,5 +45,5 @@ export const searchField = new CountryTotal.SearchBlock("searchBlock", [ "countr
 export const tableContainer = new CountryTotal.Container("tableContainer", [ "countryTableContainer" ], blockCountry);
 export const totalTable = new CountryTotal.CountryTable("countryTable", [ "countryTable" ], tableContainer.domElement);
 export const keyboard = new Keyboard("keyboardBlock", searchField.searchInput.domElement, document.querySelector("body"));
-export const indicatorTable = new Table()
-indicatorTable.createTable()
+export const indicatorTable = new Table();
+indicatorTable.createTable();
