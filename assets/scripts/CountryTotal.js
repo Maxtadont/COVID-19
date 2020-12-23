@@ -14,8 +14,8 @@ export function addFilteredCountries() {
   }
 }
 
-function nextDataType(element) {
-  const nextType = globalDataType.getNextType(element.textContent);
+function nextDataType() {
+  const nextType = globalDataType.getNextType(MainElements.totalBlock.titleBlock.domElement.textContent);
   const curDataTotal = globalTotalData.getTotal();
   MainElements.totalBlock.setDataType(nextType, curDataTotal[`${nextType.type}`]);
   addFilteredCountries();
