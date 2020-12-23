@@ -48,22 +48,23 @@
     cursor: pointer;
 }
 
+.cases,
+.deaths,
+.recovered {
+    font-weight: normal;
+    text-shadow: 2px 2px 10px black;
+}
+
 .cases {
     color:yellow;
-    opacity: 0.8;
-    font-weight: bold;
 }
 
 .deaths {
     color:red;
-    opacity: 0.8;
-    font-weight: bold;
 }
 
 .recovered {
-    color:green;
-    opacity: 0.8;
-    font-weight: bold;
+    color: rgb(0 255 0);
 }
 @media (min-width: 768px) and (max-width: 1330px) {
     [data-table-content] {
