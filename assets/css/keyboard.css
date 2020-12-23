@@ -5,22 +5,6 @@
   --min-width: 450px;
 }
 
-.use-keyboard-input {
-  display: block;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  width: 95%;
-  height: 50vh;
-  margin: 10px auto;
-  padding: 0px;
-  font-size: 25px;
-  background: black;
-  color: #08ff00;
-  resize: none;
-  outline: none;
-  border-radius: 5px;
-  word-wrap: normal;
-}
-
 .keyboard {
   position: fixed;
   width: 100%;

@@ -24,11 +24,8 @@ export const key_symbols = [
   {val: "u", shift_val: "U", ru_val: "г", ru_shift_val: "Г", end_row: false, keyCode: "KeyU"},
   {val: "i", shift_val: "I", ru_val: "ш", ru_shift_val: "Ш", end_row: false, keyCode: "KeyI"},
   {val: "o", shift_val: "O", ru_val: "щ", ru_shift_val: "Щ", end_row: false, keyCode: "KeyO"},
-  {val: "p", shift_val: "P", ru_val: "з", ru_shift_val: "З", end_row: false, keyCode: "KeyP"},
-  {val: "[", shift_val: "{", ru_val: "х", ru_shift_val: "Х", end_row: false, keyCode: "BracketLeft"},
-  {val: "]", shift_val: "}", ru_val: "ъ", ru_shift_val: "Ъ", end_row: false, keyCode: "BracketRight"},
-  {val: "ENTER", shift_val: "ENTER", ru_val: "ENTER", ru_shift_val: "ENTER", end_row: true, keyCode: "Enter"},
-
+  {val: "p", shift_val: "P", ru_val: "з", ru_shift_val: "З", end_row: true, keyCode: "KeyP"},
+  
   {val: "CAPS", shift_val: "CAPS", ru_val: "CAPS", ru_shift_val: "CAPS", end_row: false, keyCode: "CapsLock"},
   {val: "a", shift_val: "A", ru_val: "ф", ru_shift_val: "Ф", end_row: false, keyCode: "KeyA"},
   {val: "s", shift_val: "S", ru_val: "ы", ru_shift_val: "Ы", end_row: false, keyCode: "KeyS"},

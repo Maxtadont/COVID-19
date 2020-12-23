@@ -31,7 +31,6 @@ function pointChartAndMapData(element) {
     MainElements.newChart.getChart(attribute, dataType.code); 
   }
 }
-
 export class Container extends DOMObject {
   constructor (name, classes, parent) {
     const domElement = {parent: parent, blockType: "div", classes: classes};
@@ -79,6 +78,7 @@ export class SearchBlock extends DOMObject {
     const domElement = {parent: parent, blockType: "div", classes: classes};
     super(`${name}`, domElement);  
     this.searchInput = new SearchField("data-countrySearch-field", [ "countrySearch__value" ], this.domElement);
+    this.searchKbdButon = new SearchKeyBoardButton("data-countrySearch-btn", [ "countrySearch__btn" ], this.domElement);
   }
 }
 
@@ -90,6 +90,21 @@ export class SearchField extends DOMObject {
     this.domElement.addEventListener("input", () => { 
       addFilteredCountries();
     });
+  }
+}
+
+export class SearchKeyBoardButton extends DOMObject {
+  constructor (name, classes, parent) {
+    const domElement = {parent: parent, blockType: "button", classes: classes};
+    super(`${name}`, domElement);
+    this.keyboard = null;
+    this.domElement.addEventListener("click", () => {
+      //
+    });
+  }  
+
+  assignKeybord(element){
+    this.keyboard = element;
   }
 }
 

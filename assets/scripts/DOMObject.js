@@ -56,4 +56,8 @@ export class DOMObject {
   show() {
     this.domElement.style.visibility = "visible";
   }
+
+  isVisible() {
+    return this.document.style.visibility === "visible";
+  }
 }
