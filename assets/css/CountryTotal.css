@@ -96,7 +96,7 @@
   width: 20%;
 }
 
-@media(max-width: 1212px) {
+@media (min-width: 768px) and (max-width: 1212px) {
   .countryTotal__title {
     font-size: 1rem;
   }
@@ -107,7 +107,7 @@
     height: calc(100% - 120px); 
   }
 }
-@media(max-width: 880px) {
+@media (min-width: 768px) and (max-width: 880px) {
   .countryTotal__title {
     font-size: 0.8rem;
   }
