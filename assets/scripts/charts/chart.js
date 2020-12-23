@@ -1,4 +1,5 @@
 import { countryList } from "./chartCountries.js";
+import { dataReserve } from "./dataReserve.js";
 export class Chart {
 	constructor() {
 		this.chartWindow = document.querySelector("[data-chart]");
@@ -43,7 +44,11 @@ export class Chart {
 				this.drawChart(this.getChartType(type).data, this.dates, this.country, this.getChartType(type).color, this.getChartType(type).type, customColor);
 			})
 			.catch(() => {
-				console.log("Error: data");
+				console.log('API Error')
+				this.getCountry("WD");
+				this.transformData(dataReserve);
+				this.changeChartType(type, customColor);
+				this.drawChart(this.getChartType(type).data, this.dates, this.country, this.getChartType(type).color, this.getChartType(type).type, customColor);
 			});
 	}
 
